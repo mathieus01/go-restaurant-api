@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "test:staged": "jest"
+    "test": "jest --passWithNoTests --watch",
+    "test:staged": "jest --passWithNoTests"
   },
   "keywords": [],
   "author": "Matheus Nunes Barros",
@@ -14,6 +14,7 @@
     "@types/jest": "^26.0.13",
     "@types/node": "^14.6.3",
     "@typescript-eslint/eslint-plugin": "^3.10.1",
+    "@shelf/jest-mongodb": "^1.2.3",
     "eslint": "^7.8.1",
     "eslint-config-standard-with-typescript": "^19.0.1",
     "eslint-plugin-import": "^2.22.0",
