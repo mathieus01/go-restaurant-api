@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand ",
+    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand --no-cache --detectOpenHandles --forceExit",
     "test:verbose": "jest --passWithNoTests --runInBand",
     "test:unit": "npm test -- --watch -c jest-unit-config.js",
     "test:integration": "npm test-- --watch -c jest-integration-config.js",
@@ -41,5 +41,11 @@
     "bcrypt": "^5.0.0",
     "knex": "^0.21.12",
     "pg": "^8.5.0"
+  },
+  "engines": {
+    "node": "12.x"
+  },
+  "_moduleAliases": {
+    "@": "dist"
   }
 }
