@@ -1,4 +1,5 @@
 import { LogErrorRepository } from '@/data/protocols/db/log/log-error-repository'
+import { makeLogErrorRepository } from '@/data/test/mock-db-log'
 import { mockAccountModel } from '@/domain/test/mock-account'
 import { ok, serverError } from '@/presentation/helpers/http/http-helper'
 import { Controller, HttpRequest, HttpResponse } from '@/presentation/protocols'
@@ -24,14 +25,6 @@ const makeController = (): Controller => {
     }
   }
   return new ControllerStub()
-}
-const makeLogErrorRepository = (): LogErrorRepository => {
-  class LogErrorRepositoryrStub implements LogErrorRepository {
-    async logError (stack: Error): Promise<void> {
-      return Promise.resolve()
-    }
-  }
-  return new LogErrorRepositoryrStub()
 }
 
 interface SutTypes {
