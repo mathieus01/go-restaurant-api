@@ -45,4 +45,17 @@ describe('Account Db Repository', () => {
       expect(fakeAccount[0].token).toEqual('any_token')
     })
   })
+
+  describe('add()', () => {
+    test('Should add an account on success', async () => {
+      const accountParams = mockAddAccountModel()
+      const sut = new AccountDbRepository()
+      const accountModel = await sut.add(accountParams)
+      expect(accountModel).toBeTruthy()
+      expect(accountModel.id).toBeTruthy()
+      expect(accountModel.name).toBe('any_name')
+      expect(accountModel.email).toBe('any_email@mail.com')
+      expect(accountModel.password).toBe('any_password')
+    })
+  })
 })
