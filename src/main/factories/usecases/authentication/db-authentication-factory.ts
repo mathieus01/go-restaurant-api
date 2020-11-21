@@ -6,7 +6,8 @@ import { AccountDbRepository } from '@/infra/db/account/account-db-repository'
 import env from '@/main/config/env'
 
 export const makeDbAuthentication = (): Authentication => {
-  const bcryptAdapter = new BcryptAdapter()
+  const salt = 12
+  const bcryptAdapter = new BcryptAdapter(salt)
   const jwtAdapter = new JwtAdapter(env.jwtSecret)
   const accountDbRepository = new AccountDbRepository()
   return new DbAuthentication(accountDbRepository, bcryptAdapter, jwtAdapter, accountDbRepository)
