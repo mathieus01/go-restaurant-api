@@ -1,10 +1,10 @@
 import { LogErrorRepository } from '../protocols/db/log/log-error-repository'
 
 export const makeLogErrorRepository = (): LogErrorRepository => {
-  class LogErrorRepositoryrStub implements LogErrorRepository {
-    async logError (stack: Error): Promise<void> {
+  class LogErrorRepositoryStub implements LogErrorRepository {
+    async logError (stack: string): Promise<void> {
       return Promise.resolve()
     }
   }
-  return new LogErrorRepositoryrStub()
+  return new LogErrorRepositoryStub()
 }
