@@ -8,7 +8,7 @@ import { DbHelper } from '../helpers/db-helper'
 export class AccountDbRepository implements LoadAccountByEmailRepository, UpdateAccessTokenRepository, AddAccountRepository {
   async add (accountData: AddAccountParams): Promise<AccountModel> {
     const db = await DbHelper.connect()
-    const ids = await db('accounts').insert(accountData)
+    const ids = await db('accounts').insert(accountData).returning('id')
     const result = await db('accounts').where({ id: ids[0] }).select()
     const accountModel = result?.length > 0 ? result[0] : null
     return accountModel
