@@ -5,7 +5,7 @@ import { SignUpController } from '@/presentation/controllers/authentication/sign
 import { Controller } from '@/presentation/protocols'
 import { makeSignUpValidationFactory } from './signup-validation-factory'
 
-export const makeSignUpControllerFactory = (): Controller => {
+export const makeSignUpController = (): Controller => {
   const controller = new SignUpController(makeSignUpValidationFactory(), makeDbAddAccount(), makeDbAuthentication())
   return makeLogControllerDecorator(controller)
 }
