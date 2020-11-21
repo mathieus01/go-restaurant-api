@@ -2,7 +2,7 @@ import { ServerError, UnauthorizedError } from '@/presentation/errors'
 import { HttpResponse } from '@/presentation/protocols'
 
 export const unauthorized = (): HttpResponse => ({
-  statusCode: 403,
+  statusCode: 401,
   body: new UnauthorizedError()
 })
 
