@@ -5,7 +5,9 @@ module.exports = {
     '!<rootDir>/src/main/**',
     '!<rootDir>/src/**/*-protocols.ts',
     '!**/protocols/**',
-    '!**/test/**'
+    '!**/test/**',
+    '!**/migrations/**',
+    '!**/db/helpers/**'
   ],
   coverageDirectory: 'coverage',
   coverageProvider: 'babel',
