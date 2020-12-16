@@ -2,47 +2,10 @@ import { AddFoodRepository } from '@/data/protocols/db/menu/add-food-repository'
 import { AddSizeRepository } from '@/data/protocols/db/menu/add-size-repository'
 import { AddTypeRepository } from '@/data/protocols/db/menu/add-type-repository'
 import { LoadFoodRepository } from '@/data/protocols/db/menu/load-food-repository'
-import { FoodModel } from '@/domain/models/foods'
-import { SizeModel } from '@/domain/models/sizes'
-import { TypeModel } from '@/domain/models/types'
-import { mockAddFoodParams, mockFoodModel, mockSizeModel, mockTypeModel } from '@/domain/test/mock-menu'
+import { mockAddFoodParams, mockFoodModel } from '@/domain/test/mock-menu'
+import { mockAddFoodRepository, mockAddTypeRepository, mockAddSizeRepository, mockLoadFoodRepository } from '@/data/test/mock-db-food'
 import { throwError } from '@/domain/test/test-helpers'
-import { AddFoodParams, AddSizeParams, AddTypeParams } from '@/domain/usecases/menu/add-food'
 import { DbAddFood } from './db-add-food'
-
-const makeAddTypeRepository = (): AddTypeRepository => {
-  class AddTypeRepositoryStub implements AddTypeRepository {
-    async add (addTypeParams: AddTypeParams): Promise<TypeModel> {
-      return Promise.resolve(mockTypeModel())
-    }
-  }
-  return new AddTypeRepositoryStub()
-}
-const makeAddSizeRepository = (): AddSizeRepository => {
-  class AddSizeRepositoryStub implements AddSizeRepository {
-    async add (addSizeParams: AddSizeParams): Promise<SizeModel> {
-      return Promise.resolve(mockSizeModel())
-    }
-  }
-  return new AddSizeRepositoryStub()
-}
-const makeAddFoodRepository = (): AddFoodRepository => {
-  class AddFoodRepositoryStub implements AddFoodRepository {
-    async add (addFoodParams: AddFoodParams): Promise<FoodModel> {
-      return Promise.resolve(mockFoodModel())
-    }
-  }
-  return new AddFoodRepositoryStub()
-}
-
-const makeLoadFoodRepository = (): LoadFoodRepository => {
-  class LoadFoodRepositoryStub implements LoadFoodRepository {
-    async loadById (id: number): Promise<FoodModel> {
-      return Promise.resolve(mockFoodModel())
-    }
-  }
-  return new LoadFoodRepositoryStub()
-}
 
 interface SutSizes {
   sut: DbAddFood
@@ -53,10 +16,10 @@ interface SutSizes {
 }
 
 const makeSut = (): SutSizes => {
-  const addFoodRepositoryStub = makeAddFoodRepository()
-  const addTypeRepositoryStub = makeAddTypeRepository()
-  const addSizeRepositoryStub = makeAddSizeRepository()
-  const loadFoodRepositoryStub = makeLoadFoodRepository()
+  const addFoodRepositoryStub = mockAddFoodRepository()
+  const addTypeRepositoryStub = mockAddTypeRepository()
+  const addSizeRepositoryStub = mockAddSizeRepository()
+  const loadFoodRepositoryStub = mockLoadFoodRepository()
   const sut = new DbAddFood(addFoodRepositoryStub, addTypeRepositoryStub, addSizeRepositoryStub, loadFoodRepositoryStub)
   return {
     sut,
