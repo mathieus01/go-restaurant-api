@@ -7,7 +7,7 @@
     "start": "node dist/main/server.js",
     "build": "rimraf dist && tsc -p tsconfig-build.json",
     "local": "tsnd --transpile-only --ignore-watch node_modules --respawn src/main/server.ts",
-    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand --no-cache --detectOpenHandles --forceExit",
+    "test": "jest --passWithNoTests  --noStackTrace --runInBand --no-cache --detectOpenHandles --forceExit",
     "test:verbose": "jest --passWithNoTests --runInBand",
     "test:unit": "npm test -- --watch -c jest-unit-config.js",
     "test:integration": "npm test -- --watch -c jest-integration-config.js",
