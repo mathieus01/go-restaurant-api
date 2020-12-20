@@ -5,29 +5,27 @@ import { LoadFoodRepository } from '@/data/protocols/db/menu/load-food-repositor
 import { AddFoodParams, AddSizeParams, AddTypeParams } from '@/domain/usecases/menu/add-food'
 import { mockFoodModel, mockSizeModel, mockTypeModel } from '@/domain/test/mock-menu'
 import { FoodModel } from '@/domain/models/foods'
-import { SizeModel } from '@/domain/models/sizes'
-import { TypeModel } from '@/domain/models/types'
 
 export const mockAddTypeRepository = (): AddTypeRepository => {
   class AddTypeRepositoryStub implements AddTypeRepository {
-    async add (addTypeParams: AddTypeParams): Promise<TypeModel> {
-      return Promise.resolve(mockTypeModel())
+    async add (addTypeParams: AddTypeParams): Promise<number> {
+      return Promise.resolve(mockTypeModel().id)
     }
   }
   return new AddTypeRepositoryStub()
 }
 export const mockAddSizeRepository = (): AddSizeRepository => {
   class AddSizeRepositoryStub implements AddSizeRepository {
-    async add (addSizeParams: AddSizeParams): Promise<SizeModel> {
-      return Promise.resolve(mockSizeModel())
+    async add (addSizeParams: AddSizeParams): Promise<number> {
+      return Promise.resolve(mockSizeModel().id)
     }
   }
   return new AddSizeRepositoryStub()
 }
 export const mockAddFoodRepository = (): AddFoodRepository => {
   class AddFoodRepositoryStub implements AddFoodRepository {
-    async add (addFoodParams: AddFoodParams): Promise<FoodModel> {
-      return Promise.resolve(mockFoodModel())
+    async add (addFoodParams: AddFoodParams): Promise<number> {
+      return Promise.resolve(mockFoodModel().id)
     }
   }
   return new AddFoodRepositoryStub()

@@ -16,14 +16,14 @@ export class DbAddFood implements AddFood {
   async add (addfoodParams: AddFoodParams): Promise<FoodModel> {
     const { type, food } = addfoodParams
     const { sizes } = type
-    let foodModel = await this.addFoodRepositoryStub.add({ food })
-    if (foodModel) {
-      const typeModel = await this.addTypeRepository.add({ flavor: type.flavor, foodId: foodModel.id })
-      if (typeModel) {
+    const foodId = await this.addFoodRepositoryStub.add({ food })
+    if (foodId) {
+      const typeId = await this.addTypeRepository.add({ flavor: type.flavor, foodId })
+      if (typeId) {
         for (const sizeParams of sizes) {
-          await this.addSizeRepository.add({ size: sizeParams.size, typeId: typeModel.id })
+          await this.addSizeRepository.add({ size: sizeParams.size, typeId })
         }
-        foodModel = await this.loadFoodRepository.loadById(foodModel.id)
+        const foodModel = await this.loadFoodRepository.loadById(foodId)
         return foodModel
       }
     }
