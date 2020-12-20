@@ -18,7 +18,7 @@ describe('Size Db Repository', () => {
   })
 
   beforeEach(async (done) => {
-    await db('foods').delete()
+    await db('sizes').delete()
     done()
   })
 
@@ -28,7 +28,7 @@ describe('Size Db Repository', () => {
       const { sizes } = type
       const { size } = sizes[0]
       const sut = new SizeDbRepository()
-      const sizeId = await sut.add({ size })
+      const sizeId = await sut.add({ size, typeId: 1 })
       expect(sizeId).toBeTruthy()
     })
   })

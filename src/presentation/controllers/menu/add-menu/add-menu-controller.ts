@@ -18,6 +18,7 @@ export class AddMenuController implements Controller {
       const foodModel = await this.addFood.add({ food, type })
       return ok(foodModel)
     } catch (error) {
+      console.log('error', error)
       return serverError(error)
     }
   }

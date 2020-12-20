@@ -4,6 +4,12 @@ export async function up (knex: Knex): Promise<void> {
   return knex.schema.createTable('sizes', table => {
     table.increments('id').primary()
     table.string('size').notNullable()
+    table.integer('typeId')
+      .notNullable()
+      .references('id')
+      .inTable('types')
+      .onDelete('CASCADE')
+      .onUpdate('CASCADE')
   })
 }
 
