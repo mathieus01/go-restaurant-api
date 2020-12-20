@@ -7,7 +7,7 @@ import { AddFood, AddFoodParams } from '@/domain/usecases/menu/add-food'
 
 export class DbAddFood implements AddFood {
   constructor (
-    private readonly addFoodRepositoryStub: AddFoodRepository,
+    private readonly addFoodRepository: AddFoodRepository,
     private readonly addTypeRepository: AddTypeRepository,
     private readonly addSizeRepository: AddSizeRepository,
     private readonly loadFoodRepository: LoadFoodRepository
@@ -16,7 +16,7 @@ export class DbAddFood implements AddFood {
   async add (addfoodParams: AddFoodParams): Promise<FoodModel> {
     const { type, food } = addfoodParams
     const { sizes } = type
-    const foodId = await this.addFoodRepositoryStub.add({ food })
+    const foodId = await this.addFoodRepository.add({ food })
     if (foodId) {
       const typeId = await this.addTypeRepository.add({ flavor: type.flavor, foodId })
       if (typeId) {
