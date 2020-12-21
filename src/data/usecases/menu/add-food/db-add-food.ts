@@ -21,7 +21,7 @@ export class DbAddFood implements AddFood {
       const typeId = await this.addTypeRepository.add({ flavor: type.flavor, foodId })
       if (typeId) {
         for (const sizeParams of sizes) {
-          await this.addSizeRepository.add({ size: sizeParams.size, typeId })
+          await this.addSizeRepository.add({ size: sizeParams.size, cost: sizeParams.cost, typeId })
         }
         const foodModel = await this.loadFoodRepository.loadById(foodId)
         return foodModel
