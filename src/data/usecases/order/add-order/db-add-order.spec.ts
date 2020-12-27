@@ -1,55 +1,10 @@
 import { AddOrderRepository } from '@/data/protocols/db/order/add-order-repository'
-import { OrderModel } from '@/domain/models/order'
-import { addOrderParams } from '@/domain/usecases/order/add-order'
 import { DbAddOrder } from './db-add-order'
 import { LoadFoodByFoodTypeAndSizeIdsRepository } from '@/data/protocols/db/menu/load-food-by-food-type-size-ids-repository'
 import MockDate from 'mockdate'
-import { FoodModel } from '@/domain/models/foods'
-import { mockFoodModel } from '@/domain/test/mock-menu'
 import { LoadAccountByIdRepository } from '@/data/protocols/db/account/load-account-by-id-repository'
-import { AccountModel } from '@/domain/models/account'
-import { mockAccountModel } from '@/domain/test/mock-account'
-
-const mockOrderModel = (): OrderModel => ({
-  user_id: 1,
-  sizeFood_id: 1,
-  address: 'any_address',
-  date: new Date(),
-  observation: 'any_observation'
-})
-const mockAddOrderParams = (): addOrderParams => ({
-  user_id: 1,
-  sizeFood_id: 1,
-  address: 'any_address',
-  date: new Date(),
-  observation: 'any_observation'
-})
-
-const mockAddOrderRepository = (): AddOrderRepository => {
-  class AddOrderRepositoryStub implements AddOrderRepository {
-    async add (order: addOrderParams): Promise<OrderModel> {
-      return Promise.resolve(mockOrderModel())
-    }
-  }
-  return new AddOrderRepositoryStub()
-}
-const mockLoadFoodByFoodTypeAndSizeIdsRepository = (): LoadFoodByFoodTypeAndSizeIdsRepository => {
-  class LoadFoodByFoodTypeAndSizeIdsRepositoryStub implements LoadFoodByFoodTypeAndSizeIdsRepository {
-    async load (sizeFoodId: number): Promise<FoodModel> {
-      return Promise.resolve(mockFoodModel())
-    }
-  }
-  return new LoadFoodByFoodTypeAndSizeIdsRepositoryStub()
-}
-
-const mockLoadAccountByIdRepository = (): LoadAccountByIdRepository => {
-  class LoadAccountByIdRepositoryStub implements LoadAccountByIdRepository {
-    async loadById (id: number): Promise<AccountModel> {
-      return Promise.resolve(mockAccountModel())
-    }
-  }
-  return new LoadAccountByIdRepositoryStub()
-}
+import { mockAddOrderParams, mockOrderModel } from '@/domain/test/mock-order'
+import { mockAddOrderRepository, mockLoadAccountByIdRepository, mockLoadFoodByFoodTypeAndSizeIdsRepository } from '@/data/test/mock-db-order'
 
 interface SutTypes {
   sut: DbAddOrder
