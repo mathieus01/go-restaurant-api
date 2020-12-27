@@ -39,6 +39,7 @@
     "husky": "^4.2.5",
     "jest": "^26.4.2",
     "lint-staged": "^10.3.0",
+    "mockdate": "^3.0.2",
     "sequelize-cli": "^6.2.0",
     "sqlite3": "^5.0.0",
     "sucrase": "^3.16.0",

@@ -1,7 +1,7 @@
 export interface OrderModel {
-  food_id: number
-  observation: string
+  sizeFood_id: number
+  observation?: string
   date: Date
   address: string
-  user_id: string
+  user_id: number
 }
