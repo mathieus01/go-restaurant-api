@@ -55,7 +55,7 @@ describe('DbAddFood', () => {
     await sut.add(mockAddFoodParams())
     expect(addSpy).toHaveBeenCalledWith({
       flavor: 'any_flavor',
-      foodId: 1
+      food_id: 1
     })
   })
   test('Should return null if AddTypeRepository return null', async () => {
@@ -74,7 +74,7 @@ describe('DbAddFood', () => {
     const { sut, addSizeRepositoryStub } = makeSut()
     const addSpy = jest.spyOn(addSizeRepositoryStub, 'add')
     await sut.add(mockAddFoodParams())
-    expect(addSpy).toHaveBeenCalledWith({ size: 'any_size', cost: 70, typeId: 1 })
+    expect(addSpy).toHaveBeenCalledWith({ size: 'any_size', price: 70, type_id: 1 })
   })
   test('Should throw if AddSizeRepository throws', async () => {
     const { sut, addSizeRepositoryStub } = makeSut()

@@ -3,28 +3,20 @@ import { LoadAccountByEmailRepository } from '@/data/protocols/db/account/load-a
 import { UpdateAccessTokenRepository } from '@/data/protocols/db/account/update-access-token-repository'
 import { AccountModel } from '@/domain/models/account'
 import { AddAccountParams } from '@/domain/usecases/account/add-account'
-import { DbHelper } from '../helpers/db-helper'
+import Account from '@/infra/models/account-model'
 
 export class AccountDbRepository implements LoadAccountByEmailRepository, UpdateAccessTokenRepository, AddAccountRepository {
   async add (accountData: AddAccountParams): Promise<AccountModel> {
-    const db = await DbHelper.connect()
-    const ids = await db('accounts').insert(accountData).returning('id')
-    const result = await db('accounts').where({ id: ids[0] }).select()
-    const accountModel = result?.length > 0 ? result[0] : null
+    const accountModel = await Account.create(accountData)
     return accountModel
   }
 
   async loadByEmail (email: string): Promise<AccountModel> {
-    const db = await DbHelper.connect()
-    const result = await db('accounts').where({ email }).select()
-    const account = result?.length > 0 ? result[0] : null
+    const account = await Account.findOne({ where: { email } })
     return account
   }
 
   async updateAccessToken (id: number, token: string): Promise<void> {
-    const db = await DbHelper.connect()
-    await db('accounts').update({
-      token
-    }).where({ id })
+    await Account.update({ token }, { where: { id } })
   }
 }

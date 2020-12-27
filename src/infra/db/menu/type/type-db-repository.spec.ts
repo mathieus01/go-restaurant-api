@@ -1,33 +1,27 @@
 import { mockAddFoodParams } from '@/domain/test/mock-menu'
-import Knex from 'knex'
-import { DbHelper } from '../../helpers/db-helper'
+import Food from '@/infra/models/food-model'
+import Type from '@/infra/models/type-model'
 import { TypeDbRepository } from './type-db-repository'
 
 describe('Type Db Repository', () => {
-  let db: Knex
-
   beforeAll(async (done) => {
-    db = await DbHelper.connect()
-    await db.migrate.latest()
-    done()
-  })
-
-  afterAll(async done => {
-    await db.destroy()
     done()
   })
 
   beforeEach(async (done) => {
-    await db('foods').delete()
+    await Type.destroy({
+      where: {}
+    })
     done()
   })
 
   describe('add()', () => {
     test('Should add a food', async () => {
-      const { type } = mockAddFoodParams()
+      const { type, food } = mockAddFoodParams()
       const { flavor } = type
+      const foodModel = await Food.create({ food })
       const sut = new TypeDbRepository()
-      const typeId = await sut.add({ flavor, foodId: 1 })
+      const typeId = await sut.add({ flavor, food_id: foodModel.id })
       expect(typeId).toBeTruthy()
     })
   })

@@ -1,32 +1,20 @@
-import { DbHelper } from '@/infra/db/helpers/db-helper'
+import Account from '@/infra/models/account-model'
 import { hash } from 'bcrypt'
-import Knex from 'knex'
 import request from 'supertest'
 import app from '../config/app'
 
 describe('Login Route', () => {
-  let db: Knex
-
-  beforeAll(async (done) => {
-    db = await DbHelper.connect()
-    await db.migrate.latest()
-    done()
-  })
-
-  afterAll(async done => {
-    await db.destroy()
-    done()
-  })
-
   beforeEach(async (done) => {
-    await db('accounts').delete()
+    await Account.destroy({
+      where: {}
+    })
     done()
   })
 
   describe('POST /login', () => {
     test('Should return 200 on login', async () => {
       const password = await hash('any_password', 12)
-      await db('accounts').insert({
+      await Account.create({
         name: 'any_name',
         email: 'any_mail@mail.com',
         password

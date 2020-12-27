@@ -26,7 +26,7 @@ export const mockAddFoodParams = (): AddFoodParams => ({
     flavor: 'any_flavor',
     sizes: [{
       size: 'any_size',
-      cost: 70.00
+      price: 70.00
     }]
   }
 })

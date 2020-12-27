@@ -2,14 +2,14 @@ import { FoodModel } from '@/domain/models/foods'
 
 export interface AddSizeParams {
   size: string
-  typeId?: number
-  cost?: number
+  type_id?: number
+  price?: number
 }
 
 export interface AddTypeParams {
   flavor: string
   sizes?: AddSizeParams[]
-  foodId?: number
+  food_id?: number
 }
 
 export interface AddFoodParams {

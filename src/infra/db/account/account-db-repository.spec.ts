@@ -1,31 +1,19 @@
 import { AccountDbRepository } from './account-db-repository'
-import { DbHelper } from '@/infra/db/helpers/db-helper'
 import { mockAddAccountModel } from '@/domain/test/mock-account'
-import Knex from 'knex'
+import Account from '@/infra/models/account-model'
 
 describe('Account Db Repository', () => {
-  let db: Knex
-
-  beforeAll(async (done) => {
-    db = await DbHelper.connect()
-    await db.migrate.latest()
-    done()
-  })
-
-  afterAll(async done => {
-    await db.destroy()
-    done()
-  })
-
   beforeEach(async (done) => {
-    await db('accounts').delete()
+    await Account.destroy({
+      where: {}
+    })
     done()
   })
 
   describe('loadByEmail()', () => {
     test('Should return a account on loadByEmail success', async () => {
       const sut = new AccountDbRepository()
-      await db('accounts').insert(mockAddAccountModel())
+      await Account.create(mockAddAccountModel())
       const account = await sut.loadByEmail('any_email@mail.com')
       expect(account).toBeTruthy()
     })
@@ -39,10 +27,10 @@ describe('Account Db Repository', () => {
   describe('updateAccessToken()', () => {
     test('Should update an access token on success', async () => {
       const sut = new AccountDbRepository()
-      const result = await db('accounts').insert(mockAddAccountModel())
-      await sut.updateAccessToken(result[0], 'any_token')
-      const fakeAccount = await db('accounts').where({ id: result[0] }).select()
-      expect(fakeAccount[0].token).toEqual('any_token')
+      const account = await Account.create(mockAddAccountModel())
+      await sut.updateAccessToken(account.id, 'any_token')
+      const fakeAccount = await Account.findByPk(account.id)
+      expect(fakeAccount.token).toEqual('any_token')
     })
   })
 

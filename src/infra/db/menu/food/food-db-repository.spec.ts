@@ -1,24 +1,12 @@
 import { mockAddFoodParams } from '@/domain/test/mock-menu'
-import Knex from 'knex'
-import { DbHelper } from '../../helpers/db-helper'
+import Food from '@/infra/models/food-model'
 import { FoodDbRepository } from './food-db-repository'
 
 describe('Food Db Repository', () => {
-  let db: Knex
-
-  beforeAll(async (done) => {
-    db = await DbHelper.connect()
-    await db.migrate.latest()
-    done()
-  })
-
-  afterAll(async done => {
-    await db.destroy()
-    done()
-  })
-
   beforeEach(async (done) => {
-    await db('foods').delete()
+    await Food.destroy({
+      where: {}
+    })
     done()
   })
 
@@ -34,10 +22,11 @@ describe('Food Db Repository', () => {
   describe('loadById()', () => {
     test('Should load a food by id', async () => {
       const { food } = mockAddFoodParams()
-      const foodId = await db('foods').insert({ food }).returning('id')
+      const foodModelFake = await Food.create({ food })
       const sut = new FoodDbRepository()
-      const foodModel = await sut.loadById(foodId[0])
+      const foodModel = await sut.loadById(foodModelFake.id)
       expect(foodModel).toBeTruthy()
+      expect(foodModelFake.id).toEqual(foodModel.id)
     })
   })
 })
