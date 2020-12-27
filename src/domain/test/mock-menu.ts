@@ -30,3 +30,13 @@ export const mockAddFoodParams = (): AddFoodParams => ({
     }]
   }
 })
+
+export const mockAddFoodParamsWithoutPrice = (): AddFoodParams => ({
+  food: 'any_food',
+  type: {
+    flavor: 'any_flavor',
+    sizes: [{
+      size: 'any_size'
+    }]
+  }
+})

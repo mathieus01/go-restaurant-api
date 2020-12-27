@@ -1,5 +1,5 @@
 import { FoodModel } from '@/domain/models/foods'
-import { mockAddFoodParams, mockFoodModel } from '@/domain/test/mock-menu'
+import { mockAddFoodParams, mockAddFoodParamsWithoutPrice, mockFoodModel } from '@/domain/test/mock-menu'
 import { throwError } from '@/domain/test/test-helpers'
 import { AddFood, AddFoodParams } from '@/domain/usecases/menu/add-food'
 import { badRequest, ok, serverError } from '@/presentation/helpers/http/http-helper'
@@ -48,6 +48,12 @@ describe('AddFoodController', () => {
     const { sut, validationStub } = makeSut()
     jest.spyOn(validationStub, 'validate').mockReturnValueOnce(new Error())
     const httpResponse = await sut.handle(mockRequest())
+    expect(httpResponse).toEqual(badRequest(new Error()))
+  })
+  test('Should return 400 if Validate returns an error without sizes', async () => {
+    const { sut, sizeValidationStub } = makeSut()
+    jest.spyOn(sizeValidationStub, 'validate').mockReturnValueOnce(new Error())
+    const httpResponse = await sut.handle({ body: mockAddFoodParamsWithoutPrice() })
     expect(httpResponse).toEqual(badRequest(new Error()))
   })
   test('Should return 500 if Validate throws', async () => {
