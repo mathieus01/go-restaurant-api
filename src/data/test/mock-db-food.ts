@@ -1,7 +1,7 @@
 import { AddFoodRepository } from '@/data/protocols/db/menu/add-food-repository'
 import { AddSizeRepository } from '@/data/protocols/db/menu/add-size-repository'
 import { AddTypeRepository } from '@/data/protocols/db/menu/add-type-repository'
-import { LoadFoodRepository } from '@/data/protocols/db/menu/load-food-repository'
+import { LoadFoodByIdRepository } from '@/data/protocols/db/menu/load-food-by-id-repository'
 import { AddFoodParams, AddSizeParams, AddTypeParams } from '@/domain/usecases/menu/add-food'
 import { mockFoodModel, mockSizeModel, mockTypeModel } from '@/domain/test/mock-menu'
 import { FoodModel } from '@/domain/models/foods'
@@ -31,11 +31,11 @@ export const mockAddFoodRepository = (): AddFoodRepository => {
   return new AddFoodRepositoryStub()
 }
 
-export const mockLoadFoodRepository = (): LoadFoodRepository => {
-  class LoadFoodRepositoryStub implements LoadFoodRepository {
+export const mockLoadFoodByIdRepository = (): LoadFoodByIdRepository => {
+  class LoadFoodByIdRepositoryStub implements LoadFoodByIdRepository {
     async loadById (id: number): Promise<FoodModel> {
       return Promise.resolve(mockFoodModel())
     }
   }
-  return new LoadFoodRepositoryStub()
+  return new LoadFoodByIdRepositoryStub()
 }

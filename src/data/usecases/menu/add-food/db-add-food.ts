@@ -1,7 +1,7 @@
 import { AddFoodRepository } from '@/data/protocols/db/menu/add-food-repository'
 import { AddSizeRepository } from '@/data/protocols/db/menu/add-size-repository'
 import { AddTypeRepository } from '@/data/protocols/db/menu/add-type-repository'
-import { LoadFoodRepository } from '@/data/protocols/db/menu/load-food-repository'
+import { LoadFoodByIdRepository } from '@/data/protocols/db/menu/load-food-by-id-repository'
 import { FoodModel } from '@/domain/models/foods'
 import { AddFood, AddFoodParams } from '@/domain/usecases/menu/add-food'
 
@@ -10,7 +10,7 @@ export class DbAddFood implements AddFood {
     private readonly addFoodRepository: AddFoodRepository,
     private readonly addTypeRepository: AddTypeRepository,
     private readonly addSizeRepository: AddSizeRepository,
-    private readonly loadFoodRepository: LoadFoodRepository
+    private readonly loadFoodByIdRepository: LoadFoodByIdRepository
   ) {}
 
   async add (addfoodParams: AddFoodParams): Promise<FoodModel> {
@@ -23,7 +23,7 @@ export class DbAddFood implements AddFood {
         for (const sizeParams of sizes) {
           await this.addSizeRepository.add({ size: sizeParams.size, price: sizeParams.price, type_id: typeId })
         }
-        const foodModel = await this.loadFoodRepository.loadById(foodId)
+        const foodModel = await this.loadFoodByIdRepository.loadById(foodId)
         return foodModel
       }
     }

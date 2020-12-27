@@ -1,9 +1,9 @@
 import { AddFoodRepository } from '@/data/protocols/db/menu/add-food-repository'
 import { AddSizeRepository } from '@/data/protocols/db/menu/add-size-repository'
 import { AddTypeRepository } from '@/data/protocols/db/menu/add-type-repository'
-import { LoadFoodRepository } from '@/data/protocols/db/menu/load-food-repository'
+import { LoadFoodByIdRepository } from '@/data/protocols/db/menu/load-food-by-id-repository'
 import { mockAddFoodParams, mockFoodModel } from '@/domain/test/mock-menu'
-import { mockAddFoodRepository, mockAddTypeRepository, mockAddSizeRepository, mockLoadFoodRepository } from '@/data/test/mock-db-food'
+import { mockAddFoodRepository, mockAddTypeRepository, mockAddSizeRepository, mockLoadFoodByIdRepository } from '@/data/test/mock-db-food'
 import { throwError } from '@/domain/test/test-helpers'
 import { DbAddFood } from './db-add-food'
 
@@ -12,21 +12,21 @@ interface SutSizes {
   addFoodRepositoryStub: AddFoodRepository
   addSizeRepositoryStub: AddSizeRepository
   addTypeRepositoryStub: AddTypeRepository
-  loadFoodRepositoryStub: LoadFoodRepository
+  loadFoodByIdRepositoryStub: LoadFoodByIdRepository
 }
 
 const makeSut = (): SutSizes => {
   const addFoodRepositoryStub = mockAddFoodRepository()
   const addTypeRepositoryStub = mockAddTypeRepository()
   const addSizeRepositoryStub = mockAddSizeRepository()
-  const loadFoodRepositoryStub = mockLoadFoodRepository()
-  const sut = new DbAddFood(addFoodRepositoryStub, addTypeRepositoryStub, addSizeRepositoryStub, loadFoodRepositoryStub)
+  const loadFoodByIdRepositoryStub = mockLoadFoodByIdRepository()
+  const sut = new DbAddFood(addFoodRepositoryStub, addTypeRepositoryStub, addSizeRepositoryStub, loadFoodByIdRepositoryStub)
   return {
     sut,
     addSizeRepositoryStub,
     addTypeRepositoryStub,
     addFoodRepositoryStub,
-    loadFoodRepositoryStub
+    loadFoodByIdRepositoryStub
   }
 }
 
@@ -82,22 +82,22 @@ describe('DbAddFood', () => {
     const response = sut.add(mockAddFoodParams())
     await expect(response).rejects.toThrow()
   })
-  test('Should call LoadFoodRepository with correct values', async () => {
-    const { sut, loadFoodRepositoryStub } = makeSut()
+  test('Should call LoadFoodByIdRepository with correct values', async () => {
+    const { sut, loadFoodByIdRepositoryStub } = makeSut()
     const foodModel = mockFoodModel()
-    const loadSpy = jest.spyOn(loadFoodRepositoryStub, 'loadById')
+    const loadSpy = jest.spyOn(loadFoodByIdRepositoryStub, 'loadById')
     await sut.add(mockAddFoodParams())
     expect(loadSpy).toHaveBeenCalledWith(foodModel.id)
   })
-  test('Should return null if LoadFoodRepository return null', async () => {
-    const { sut, loadFoodRepositoryStub } = makeSut()
-    jest.spyOn(loadFoodRepositoryStub, 'loadById').mockReturnValueOnce(Promise.resolve(null))
+  test('Should return null if LoadFoodByIdRepository return null', async () => {
+    const { sut, loadFoodByIdRepositoryStub } = makeSut()
+    jest.spyOn(loadFoodByIdRepositoryStub, 'loadById').mockReturnValueOnce(Promise.resolve(null))
     const foodModel = await sut.add(mockAddFoodParams())
     expect(foodModel).toBeNull()
   })
-  test('Should throw if LoadFoodRepository throws', async () => {
-    const { sut, loadFoodRepositoryStub } = makeSut()
-    jest.spyOn(loadFoodRepositoryStub, 'loadById').mockImplementationOnce(throwError)
+  test('Should throw if LoadFoodByIdRepository throws', async () => {
+    const { sut, loadFoodByIdRepositoryStub } = makeSut()
+    jest.spyOn(loadFoodByIdRepositoryStub, 'loadById').mockImplementationOnce(throwError)
     const response = sut.add(mockAddFoodParams())
     await expect(response).rejects.toThrow()
   })
