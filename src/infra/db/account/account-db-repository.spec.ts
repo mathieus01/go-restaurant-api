@@ -46,4 +46,22 @@ describe('Account Db Repository', () => {
       expect(accountModel.password).toBe('any_password')
     })
   })
+
+  describe('loadById()', () => {
+    test('Should return an account on success', async () => {
+      const account = await Account.create(mockAddAccountModel())
+      const sut = new AccountDbRepository()
+      const accountModel = await sut.loadById(account.id)
+      expect(accountModel).toBeTruthy()
+      expect(accountModel.id).toBeTruthy()
+      expect(accountModel.name).toBe(account.name)
+      expect(accountModel.email).toBe(account.email)
+      expect(accountModel.password).toBe(account.password)
+    })
+    test('Should return null if loadById fails', async () => {
+      const sut = new AccountDbRepository()
+      const accountModel = await sut.loadById(1)
+      expect(accountModel).toBeFalsy()
+    })
+  })
 })
