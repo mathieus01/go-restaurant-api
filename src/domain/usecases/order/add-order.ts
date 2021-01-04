@@ -1,11 +1,12 @@
 import { OrderModel } from '@/domain/models/order'
 
 export interface addOrderParams {
-  sizeFood_id: number
+  size_food_id: number
   observation: string
   date: Date
   address: string
-  user_id: number
+  account_id: number
+  status?: string
 }
 
 export interface AddOrder {

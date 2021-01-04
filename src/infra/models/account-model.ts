@@ -1,6 +1,7 @@
 import { AccountModel } from '@/domain/models/account'
 import { Model, DataTypes } from 'sequelize'
 import DbHelper from '../db/helpers/db-helper'
+import Order from './order-model'
 
 class Account extends Model implements AccountModel {
   id?: number
@@ -20,5 +21,8 @@ Account.init({
   sequelize: DbHelper.connection,
   tableName: 'accounts'
 })
+
+Account.hasMany(Order, { as: 'orders' })
+Order.belongsTo(Account, { as: 'account' })
 
 export default Account

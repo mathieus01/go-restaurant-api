@@ -1,7 +1,7 @@
 import { SizeModel } from '@/domain/models/sizes'
 import { Model, DataTypes } from 'sequelize'
-import Type from './type-model'
 import DbHelper from '../db/helpers/db-helper'
+import Order from './order-model'
 
 class Size extends Model implements SizeModel {
   id?: number
@@ -17,6 +17,7 @@ Size.init({
   tableName: 'sizes'
 })
 
-Size.belongsTo(Type, { as: 'type', foreignKey: 'type_id' })
+Size.hasMany(Order, { as: 'orders' })
+Order.belongsTo(Size, { as: 'size' })
 
 export default Size

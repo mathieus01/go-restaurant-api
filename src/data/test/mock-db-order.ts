@@ -19,7 +19,7 @@ export const mockAddOrderRepository = (): AddOrderRepository => {
 }
 export const mockLoadFoodByFoodTypeAndSizeIdsRepository = (): LoadFoodByFoodTypeAndSizeIdsRepository => {
   class LoadFoodByFoodTypeAndSizeIdsRepositoryStub implements LoadFoodByFoodTypeAndSizeIdsRepository {
-    async load (sizeFoodId: number): Promise<FoodModel> {
+    async loadFoodByFoodTypeAndSizeIds (sizeFoodId: number): Promise<FoodModel> {
       return Promise.resolve(mockFoodModel())
     }
   }

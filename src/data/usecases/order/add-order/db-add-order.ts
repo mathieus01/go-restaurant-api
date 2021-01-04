@@ -12,8 +12,8 @@ export class DbAddOrder implements AddOrder {
   ) {}
 
   async add (order: addOrderParams): Promise<OrderModel> {
-    const food = await this.loadFoodByFoodTypeAndSizeIdsRepository.load(order.sizeFood_id)
-    const account = await this.loadAccountByIdRepository.loadById(order.user_id)
+    const food = await this.loadFoodByFoodTypeAndSizeIdsRepository.loadFoodByFoodTypeAndSizeIds(order.size_food_id)
+    const account = await this.loadAccountByIdRepository.loadById(order.account_id)
     if (food && account) {
       const orderModel = await this.addOrderRepository.add(order)
       return orderModel
