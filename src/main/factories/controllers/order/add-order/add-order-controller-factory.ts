@@ -4,7 +4,7 @@ import { AddOrderController } from '@/presentation/controllers/order/add-order/a
 import { Controller } from '@/presentation/protocols'
 import { makeAddOrderValidation } from './add-order-validation-factory'
 
-export const makeAddOrderControllerFactory = (): Controller => {
+export const makeAddOrderController = (): Controller => {
   const controller = new AddOrderController(makeAddOrderValidation(), makeDbAddOrder())
   return makeLogControllerDecorator(controller)
 }
