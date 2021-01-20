@@ -1,5 +1,5 @@
 import { makeLogControllerDecorator } from '@/main/factories/decorators/log-controller-decorator-factory'
-import { makeDbAddFood } from '@/main/factories/usecases/menu/add-food/db-add-food.factory'
+import { makeDbAddFood } from '@/main/factories/usecases/menu/add-food/db-add-food-factory'
 import { AddFoodController } from '@/presentation/controllers/menu/add-menu/add-food-controller'
 import { Controller } from '@/presentation/protocols'
 import { makeAddFoodSizeValidation, makeAddFoodValidation } from './add-food-validation-factory'
