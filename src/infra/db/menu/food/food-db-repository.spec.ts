@@ -47,4 +47,17 @@ describe('Food Db Repository', () => {
       expect(food.id).toEqual(food2.id)
     })
   })
+
+  describe('loadAllFoods()', () => {
+    test('Should load all foods', async () => {
+      await Food.create({ food: 'any_food1' })
+      await Food.create({ food: 'any_food2' })
+      const sut = new FoodDbRepository()
+      const foods = await sut.loadAllFoods()
+      expect(foods).toBeTruthy()
+      expect(foods.length).toEqual(2)
+      expect(foods[0].food).toEqual('any_food1')
+      expect(foods[1].food).toEqual('any_food2')
+    })
+  })
 })
