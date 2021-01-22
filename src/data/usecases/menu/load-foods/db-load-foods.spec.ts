@@ -1,17 +1,8 @@
 import { LoadFoodsRepository } from '@/data/protocols/db/menu/load-foods-repository'
-import { FoodModel } from '@/domain/models/foods'
+import { mockLoadFoodsRepository } from '@/data/test/mock-db-food'
 import { mockFoodModel } from '@/domain/test/mock-menu'
 import { throwError } from '@/domain/test/test-helpers'
 import { DbLoadFoods } from './db-load-foods'
-
-const mockLoadFoodsRepository = (): LoadFoodsRepository => {
-  class LoadFoodsRepositoryStub implements LoadFoodsRepository {
-    async loadAllFoods (): Promise<FoodModel[]> {
-      return Promise.resolve([mockFoodModel()])
-    }
-  }
-  return new LoadFoodsRepositoryStub()
-}
 
 interface SutTypes {
   sut: DbLoadFoods
