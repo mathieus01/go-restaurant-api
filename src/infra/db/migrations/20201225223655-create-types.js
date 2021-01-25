@@ -9,19 +9,9 @@ module.exports = {
         autoIncrement: true,
         allowNull: false
       },
-      flavor: {
+      description: {
         type: Sequelize.STRING,
         allowNull: false
-      },
-      food_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'foods',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
       },
       created_at: {
         type: Sequelize.DATE,

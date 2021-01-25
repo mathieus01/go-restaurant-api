@@ -1,9 +1,12 @@
+import { AccountModel } from './account'
+import { FoodModel } from './foods'
+
 export interface OrderModel {
   id?: number
-  size_food_id: number
+  food?: FoodModel
   observation?: string
   date: Date
   address: string
-  account_id: number
+  account?: AccountModel
   status?: string
 }

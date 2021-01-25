@@ -5,27 +5,17 @@ import { Controller, HttpRequest, HttpResponse, Validation } from '../../authent
 export class AddFoodController implements Controller {
   constructor (
     private readonly validation: Validation,
-    private readonly sizeValidation: Validation,
     private readonly addFood: AddFood
   ) {}
 
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
-      const { food, type } = httpRequest.body
-      const { flavor, sizes } = type
-      const error = this.validation.validate({ food, type, flavor, sizes })
+      const { food, type, price } = httpRequest.body
+      const error = this.validation.validate({ food, type, price })
       if (error) {
         return badRequest(error)
       }
-
-      for (const size of sizes) {
-        const error = this.sizeValidation.validate(size)
-        if (error) {
-          return badRequest(error)
-        }
-      }
-
-      const foodModel = await this.addFood.add({ food, type })
+      const foodModel = await this.addFood.add({ food, type, price })
       return ok(foodModel)
     } catch (error) {
       return serverError(error)

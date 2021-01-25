@@ -4,15 +4,7 @@ import { ValidationComposite } from '@/validation/validators/validation-composit
 
 export const makeAddFoodValidation = (): ValidationComposite => {
   const validations: Validation[] = []
-  for (const field of ['food', 'type', 'flavor', 'sizes']) {
-    validations.push(new RequiredFieldValidation(field))
-  }
-  return new ValidationComposite(validations)
-}
-
-export const makeAddFoodSizeValidation = (): ValidationComposite => {
-  const validations: Validation[] = []
-  for (const field of ['size', 'price']) {
+  for (const field of ['food', 'type', 'price']) {
     validations.push(new RequiredFieldValidation(field))
   }
   return new ValidationComposite(validations)

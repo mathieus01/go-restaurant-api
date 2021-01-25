@@ -1,7 +1,7 @@
 import { mockAddAccountModel } from '@/domain/test/mock-account'
+import { mockAddFoodParams, mockAddTypeParams } from '@/domain/test/mock-menu'
 import Account from '@/infra/models/account-model'
 import Food from '@/infra/models/food-model'
-import Size from '@/infra/models/size-model'
 import Type from '@/infra/models/type-model'
 import request from 'supertest'
 import app from '../config/app'
@@ -18,14 +18,14 @@ describe('Order Route', () => {
     done()
   })
 
-  test('should ', async () => {
-    const food1 = await Food.create({ food: 'any_food1' })
-    const type1 = await Type.create({ flavor: 'any_flavor1', food_id: food1.id })
-    const size1 = await Size.create({ size: 'any_size1', price: 70, type_id: type1.id })
+  test('should add a order ', async () => {
+    const { food, price } = mockAddFoodParams()
+    const typeModel = await Type.create(mockAddTypeParams())
+    const foodModel = await Food.create({ food, price, type_id: typeModel.id })
     const account = await Account.create(mockAddAccountModel())
 
     const httpRequest = {
-      size_food_id: size1.id,
+      food_id: foodModel.id,
       observation: 'any_observation',
       date: new Date(),
       address: 'any_address',

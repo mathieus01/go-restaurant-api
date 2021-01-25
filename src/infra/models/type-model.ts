@@ -1,23 +1,21 @@
 import { TypeModel } from '@/domain/models/types'
 import { Model, DataTypes } from 'sequelize'
 import DbHelper from '../db/helpers/db-helper'
-import Size from './size-model'
+import Food from './food-model'
 
 class Type extends Model implements TypeModel {
   id?: number
-  flavor: string
-  food_id?: number
+  description: string
 }
 
 Type.init({
-  flavor: DataTypes.STRING,
-  food_id: DataTypes.INTEGER
+  description: DataTypes.STRING
 }, {
   sequelize: DbHelper.connection,
   tableName: 'types'
 })
 
-Type.hasMany(Size, { as: 'sizes' })
-Size.belongsTo(Type, { as: 'type', foreignKey: 'type_id' })
+Type.hasMany(Food, { as: 'foods' })
+Food.belongsTo(Type, { as: 'type', foreignKey: 'type_id' })
 
 export default Type

@@ -2,9 +2,9 @@ import { makeLogControllerDecorator } from '@/main/factories/decorators/log-cont
 import { makeDbAddFood } from '@/main/factories/usecases/menu/add-food/db-add-food-factory'
 import { AddFoodController } from '@/presentation/controllers/menu/add-menu/add-food-controller'
 import { Controller } from '@/presentation/protocols'
-import { makeAddFoodSizeValidation, makeAddFoodValidation } from './add-food-validation-factory'
+import { makeAddFoodValidation } from './add-food-validation-factory'
 
 export const makeAddFoodController = (): Controller => {
-  const controller = new AddFoodController(makeAddFoodValidation(), makeAddFoodSizeValidation(), makeDbAddFood())
+  const controller = new AddFoodController(makeAddFoodValidation(), makeDbAddFood())
   return makeLogControllerDecorator(controller)
 }

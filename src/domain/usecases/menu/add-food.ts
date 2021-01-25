@@ -1,22 +1,22 @@
 import { FoodModel } from '@/domain/models/foods'
 
-export interface AddSizeParams {
-  size: string
-  type_id?: number
-  price?: number
-}
-
 export interface AddTypeParams {
-  flavor: string
-  sizes?: AddSizeParams[]
-  food_id?: number
+  id?: number
+  description: string
 }
 
 export interface AddFoodParams {
-  food: string
+  food?: string
   type?: AddTypeParams
+  price?: number
+}
+
+export interface AddFoodRequestParams {
+  food?: string
+  type?: string
+  price?: number
 }
 
 export interface AddFood {
-  add(addfoodParams: AddFoodParams): Promise<FoodModel>
+  add(addfoodParams: AddFoodRequestParams): Promise<FoodModel>
 }

@@ -1,42 +1,34 @@
 import { FoodModel } from '../models/foods'
-import { SizeModel } from '../models/sizes'
 import { TypeModel } from '../models/types'
-import { AddFoodParams } from '../usecases/menu/add-food'
-
-export const mockSizeModel = (): SizeModel => ({
-  id: 1,
-  size: 'any_size'
-})
+import { AddFoodParams, AddFoodRequestParams, AddTypeParams } from '../usecases/menu/add-food'
 
 export const mockTypeModel = (): TypeModel => ({
   id: 1,
-  flavor: 'any_flavor',
-  size: mockSizeModel()
+  description: 'any_description'
+})
+export const mockAddTypeParams = (): AddTypeParams => ({
+  description: 'any_description'
 })
 
 export const mockFoodModel = (): FoodModel => ({
   id: 1,
   food: 'any_food',
-  type: mockTypeModel()
+  type: mockTypeModel(),
+  price: 30.00
 })
 
+export const mockAddFoodRequestParams = (): AddFoodRequestParams => ({
+  food: 'any_food',
+  type: 'any_description',
+  price: 30.00
+})
 export const mockAddFoodParams = (): AddFoodParams => ({
   food: 'any_food',
-  type: {
-    flavor: 'any_flavor',
-    sizes: [{
-      size: 'any_size',
-      price: 70.00
-    }]
-  }
+  type: mockTypeModel(),
+  price: 30.00
 })
 
-export const mockAddFoodParamsWithoutPrice = (): AddFoodParams => ({
+export const mockAddFoodParamsWithoutPrice = (): AddFoodRequestParams => ({
   food: 'any_food',
-  type: {
-    flavor: 'any_flavor',
-    sizes: [{
-      size: 'any_size'
-    }]
-  }
+  type: 'PIZZA'
 })

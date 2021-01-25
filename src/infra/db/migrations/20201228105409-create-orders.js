@@ -21,11 +21,11 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      size_food_id: {
+      food_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'sizes',
+          model: 'foods',
           key: 'id'
         },
         onUpdate: 'CASCADE',

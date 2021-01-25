@@ -1,7 +1,7 @@
 import { OrderModel } from '@/domain/models/order'
 
 export interface addOrderParams {
-  size_food_id: number
+  food_id: number
   observation: string
   date: Date
   address: string

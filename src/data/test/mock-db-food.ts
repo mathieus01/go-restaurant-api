@@ -1,32 +1,34 @@
 import { AddFoodRepository } from '@/data/protocols/db/menu/add-food-repository'
-import { AddSizeRepository } from '@/data/protocols/db/menu/add-size-repository'
 import { AddTypeRepository } from '@/data/protocols/db/menu/add-type-repository'
 import { LoadFoodByIdRepository } from '@/data/protocols/db/menu/load-food-by-id-repository'
-import { AddFoodParams, AddSizeParams, AddTypeParams } from '@/domain/usecases/menu/add-food'
-import { mockFoodModel, mockSizeModel, mockTypeModel } from '@/domain/test/mock-menu'
+import { AddFoodParams, AddTypeParams } from '@/domain/usecases/menu/add-food'
+import { mockFoodModel, mockTypeModel } from '@/domain/test/mock-menu'
 import { FoodModel } from '@/domain/models/foods'
 import { LoadFoodsRepository } from '../protocols/db/menu/load-foods-repository'
+import { TypeModel } from '@/domain/models/types'
+import { LoadTypeRepository } from '../protocols/db/menu/load-type-repository'
 
 export const mockAddTypeRepository = (): AddTypeRepository => {
   class AddTypeRepositoryStub implements AddTypeRepository {
-    async add (addTypeParams: AddTypeParams): Promise<number> {
-      return Promise.resolve(mockTypeModel().id)
+    async add (addTypeParams: AddTypeParams): Promise<TypeModel> {
+      return Promise.resolve(mockTypeModel())
     }
   }
   return new AddTypeRepositoryStub()
 }
-export const mockAddSizeRepository = (): AddSizeRepository => {
-  class AddSizeRepositoryStub implements AddSizeRepository {
-    async add (addSizeParams: AddSizeParams): Promise<number> {
-      return Promise.resolve(mockSizeModel().id)
+export const mockLoadTypeRepository = (): LoadTypeRepository => {
+  class LoadTypeRepositoryStub implements LoadTypeRepository {
+    async loadByDescription (description: string): Promise<TypeModel> {
+      return Promise.resolve(mockTypeModel())
     }
   }
-  return new AddSizeRepositoryStub()
+  return new LoadTypeRepositoryStub()
 }
+
 export const mockAddFoodRepository = (): AddFoodRepository => {
   class AddFoodRepositoryStub implements AddFoodRepository {
-    async add (addFoodParams: AddFoodParams): Promise<number> {
-      return Promise.resolve(mockFoodModel().id)
+    async add (addFoodParams: AddFoodParams): Promise<FoodModel> {
+      return Promise.resolve(mockFoodModel())
     }
   }
   return new AddFoodRepositoryStub()

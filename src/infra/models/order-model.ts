@@ -1,14 +1,16 @@
+import { AccountModel } from '@/domain/models/account'
+import { FoodModel } from '@/domain/models/foods'
 import { OrderModel } from '@/domain/models/order'
 import { Model, DataTypes } from 'sequelize'
 import DbHelper from '../db/helpers/db-helper'
 
 class Order extends Model implements OrderModel {
   id?: number
-  size_food_id: number
+  food: FoodModel
   observation?: string
   date: Date
   address: string
-  account_id: number
+  account: AccountModel
   status?: string
 }
 
@@ -18,7 +20,7 @@ Order.init({
   address: DataTypes.STRING,
   status: DataTypes.STRING,
   account_id: DataTypes.INTEGER,
-  size_food_id: DataTypes.INTEGER
+  food_id: DataTypes.INTEGER
 }, {
   sequelize: DbHelper.connection,
   tableName: 'orders'
