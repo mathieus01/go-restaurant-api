@@ -1,16 +1,8 @@
 import { LoadFoodByIdRepository } from '@/data/protocols/db/menu/load-food-by-id-repository'
 import { RemoveFoodRepository } from '@/data/protocols/db/menu/remove-food-repository'
-import { mockLoadFoodByIdRepository } from '@/data/test/mock-db-food'
+import { mockLoadFoodByIdRepository, mockRemoveFoodRepository } from '@/data/test/mock-db-food'
 import { throwError } from '@/domain/test/test-helpers'
 import { DbRemoveFood } from './db-remove-food'
-
-const mockRemoveFoodRepository = (): RemoveFoodRepository => {
-  class RemoveFoodRepositoryStub implements RemoveFoodRepository {
-    async remove (foodId: number): Promise<void> {
-    }
-  }
-  return new RemoveFoodRepositoryStub()
-}
 
 interface SutTypes {
   sut: DbRemoveFood

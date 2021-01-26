@@ -7,6 +7,7 @@ import { FoodModel } from '@/domain/models/foods'
 import { LoadFoodsRepository } from '../protocols/db/menu/load-foods-repository'
 import { TypeModel } from '@/domain/models/types'
 import { LoadTypeRepository } from '../protocols/db/menu/load-type-repository'
+import { RemoveFoodRepository } from '../protocols/db/menu/remove-food-repository'
 
 export const mockAddTypeRepository = (): AddTypeRepository => {
   class AddTypeRepositoryStub implements AddTypeRepository {
@@ -50,4 +51,12 @@ export const mockLoadFoodsRepository = (): LoadFoodsRepository => {
     }
   }
   return new LoadFoodsRepositoryStub()
+}
+
+export const mockRemoveFoodRepository = (): RemoveFoodRepository => {
+  class RemoveFoodRepositoryStub implements RemoveFoodRepository {
+    async remove (foodId: number): Promise<void> {
+    }
+  }
+  return new RemoveFoodRepositoryStub()
 }
