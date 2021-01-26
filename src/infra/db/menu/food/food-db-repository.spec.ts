@@ -50,4 +50,16 @@ describe('Food Db Repository', () => {
       expect(foods[1].food).toEqual('any_food2')
     })
   })
+
+  describe('remove()', () => {
+    test('Should remove food by id', async () => {
+      const { price } = mockAddFoodParams()
+      const typeModel = await Type.create(mockAddTypeParams())
+      const foodModel = await Food.create({ food: 'any_food1', price, type_id: typeModel.id })
+      const sut = new FoodDbRepository()
+      await sut.remove(foodModel.id)
+      const foodRemoved = await sut.loadById(foodModel.id)
+      expect(foodRemoved).toBeFalsy()
+    })
+  })
 })
