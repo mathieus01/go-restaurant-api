@@ -11,7 +11,7 @@ export class RemoveFoodController implements Controller {
 
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
-      const { foodId } = httpRequest.headers
+      const { foodId } = httpRequest.params
       const food = await this.loadFoodById.loadById(foodId)
       if (!food) {
         return forbidden(new InvalidParamError('foodId'))

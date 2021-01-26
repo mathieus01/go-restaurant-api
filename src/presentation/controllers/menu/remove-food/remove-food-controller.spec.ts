@@ -9,7 +9,7 @@ import { HttpRequest } from '../../authentication/login/login-controller-protoco
 import { RemoveFoodController } from './remove-food-controller'
 
 const makeHttpRequest = (): HttpRequest => ({
-  headers: {
+  params: {
     foodId: 1
   }
 })
