@@ -38,4 +38,15 @@ describe('Login Route', () => {
         .expect(200)
     })
   })
+  describe('DELETE /menu', () => {
+    test('Should return 204 on remove a FOOD', async () => {
+      const { price } = mockAddFoodParams()
+      const typeModel = await Type.create(mockAddTypeParams())
+      const food = await Food.create({ food: 'any_food1', price, type_id: typeModel.id })
+
+      await request(app)
+        .delete(`/api/menu/${food.id}`)
+        .expect(204)
+    })
+  })
 })
