@@ -6,7 +6,7 @@ export class DbListOrdersByUser implements ListOrdersByUser {
   constructor (private readonly listOrdersByUserRepository: ListOrdersByUserRepository) {}
 
   async listOrdersByUser (userId: number): Promise<OrderModel[]> {
-    const orders = await this.listOrdersByUserRepository.listOrdersByUser(userId)
+    const orders = await this.listOrdersByUserRepository.loadOrdersByUser(userId)
     return orders
   }
 }

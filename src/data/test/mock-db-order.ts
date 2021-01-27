@@ -38,7 +38,7 @@ export const mockLoadAccountByIdRepository = (): LoadAccountByIdRepository => {
 
 export const mockListOrdersByUser = (): ListOrdersByUserRepository => {
   class ListOrdersByUserStub implements ListOrdersByUserRepository {
-    async listOrdersByUser (userId: number): Promise<OrderModel[]> {
+    async loadOrdersByUser (userId: number): Promise<OrderModel[]> {
       return Promise.resolve([mockOrderModel()])
     }
   }

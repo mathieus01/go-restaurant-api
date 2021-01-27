@@ -30,13 +30,13 @@ describe('DbListOrdersByUser', () => {
 
   test('Should call ListOrdersByUserRepository with correct values', async () => {
     const { sut, listOrdersByUserRepositoryStub } = makeSut()
-    const listOrdersByUserSpy = jest.spyOn(listOrdersByUserRepositoryStub, 'listOrdersByUser')
+    const listOrdersByUserSpy = jest.spyOn(listOrdersByUserRepositoryStub, 'loadOrdersByUser')
     await sut.listOrdersByUser(1)
     expect(listOrdersByUserSpy).toHaveBeenLastCalledWith(1)
   })
   test('Should throw if ListOrdersByUserRepository throws', async () => {
     const { sut, listOrdersByUserRepositoryStub } = makeSut()
-    jest.spyOn(listOrdersByUserRepositoryStub, 'listOrdersByUser').mockImplementationOnce(throwError)
+    jest.spyOn(listOrdersByUserRepositoryStub, 'loadOrdersByUser').mockImplementationOnce(throwError)
     const response = sut.listOrdersByUser(1)
     await expect(response).rejects.toThrow()
   })
