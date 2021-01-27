@@ -8,7 +8,7 @@ import { addOrderParams } from '@/domain/usecases/order/add-order'
 import { LoadAccountByIdRepository } from '../protocols/db/account/load-account-by-id-repository'
 import { LoadFoodByFoodTypeAndSizeIdsRepository } from '../protocols/db/menu/load-food-by-food-type-size-ids-repository'
 import { AddOrderRepository } from '../protocols/db/order/add-order-repository'
-import { ListOrdersByUserRepository } from '../protocols/db/order/list-orders-by-user-repository'
+import { LoadOrdersByUserRepository } from '../protocols/db/order/load-orders-by-user-repository'
 
 export const mockAddOrderRepository = (): AddOrderRepository => {
   class AddOrderRepositoryStub implements AddOrderRepository {
@@ -36,11 +36,11 @@ export const mockLoadAccountByIdRepository = (): LoadAccountByIdRepository => {
   return new LoadAccountByIdRepositoryStub()
 }
 
-export const mockListOrdersByUser = (): ListOrdersByUserRepository => {
-  class ListOrdersByUserStub implements ListOrdersByUserRepository {
+export const mockLoadOrdersByUser = (): LoadOrdersByUserRepository => {
+  class LoadOrdersByUserStub implements LoadOrdersByUserRepository {
     async loadOrdersByUser (userId: number): Promise<OrderModel[]> {
       return Promise.resolve([mockOrderModel()])
     }
   }
-  return new ListOrdersByUserStub()
+  return new LoadOrdersByUserStub()
 }
