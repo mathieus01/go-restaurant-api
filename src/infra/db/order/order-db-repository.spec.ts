@@ -24,7 +24,7 @@ describe('OrderDb Repository', () => {
   })
 
   describe('add()', () => {
-    test('should add an account on success', async () => {
+    test('should add an order on success', async () => {
       const typeModel = await Type.create({ description: 'any_description' })
       const foodModel = await Food.create({ food: 'any_food1', price: 30, type_id: typeModel.id })
       const account = await Account.create(mockAddAccountModel())
@@ -32,6 +32,21 @@ describe('OrderDb Repository', () => {
       const sut = new OrderDbRepository()
       const order = await sut.add({ status: 'RECEBIDO', address, observation, date, account_id: account.id, food_id: foodModel.id })
       expect(order).toBeTruthy()
+    })
+  })
+
+  describe('loadOrdersByUser', () => {
+    test('Should load a list of orders by user', async () => {
+      const typeModel = await Type.create({ description: 'any_description' })
+      const foodModel = await Food.create({ food: 'any_food1', price: 30, type_id: typeModel.id })
+      const account = await Account.create(mockAddAccountModel())
+      const { address, observation, date } = mockAddOrderParams()
+      await Order.create({ status: 'RECEBIDO', address, observation, date, account_id: account.id, food_id: foodModel.id })
+      await Order.create({ status: 'RECEBIDO', address, observation, date, account_id: account.id, food_id: foodModel.id })
+      const sut = new OrderDbRepository()
+      const orders = await sut.loadOrdersByUser(account.id)
+      expect(orders).toBeTruthy()
+      expect(orders.length).toEqual(2)
     })
   })
 })
