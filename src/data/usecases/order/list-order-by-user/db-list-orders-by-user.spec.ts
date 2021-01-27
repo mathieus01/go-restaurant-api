@@ -1,18 +1,9 @@
 import { ListOrdersByUserRepository } from '@/data/protocols/db/order/list-orders-by-user-repository'
-import { OrderModel } from '@/domain/models/order'
 import { mockOrderModel } from '@/domain/test/mock-order'
 import { throwError } from '@/domain/test/test-helpers'
 import { DbListOrdersByUser } from './db-list-orders-by-user'
 import MockDate from 'mockdate'
-
-const mockListOrdersByUser = (): ListOrdersByUserRepository => {
-  class ListOrdersByUserStub implements ListOrdersByUserRepository {
-    async listOrdersByUser (userId: number): Promise<OrderModel[]> {
-      return Promise.resolve([mockOrderModel()])
-    }
-  }
-  return new ListOrdersByUserStub()
-}
+import { mockListOrdersByUser } from '@/data/test/mock-db-order'
 
 interface SutTypes {
   sut: DbListOrdersByUser
