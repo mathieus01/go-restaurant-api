@@ -40,7 +40,7 @@ describe('LoadOrdersByUserController', () => {
     const { sut, loadOrdersByUserStub } = makeSut()
     const loadOrdersByUserSpy = jest.spyOn(loadOrdersByUserStub, 'loadOrdersByUser')
     await sut.handle(mockRequest())
-    expect(loadOrdersByUserSpy).toHaveBeenCalledWith(mockRequest().body)
+    expect(loadOrdersByUserSpy).toHaveBeenCalledWith(mockRequest().params.userId)
   })
 
   test('Should return 500 if loadOrdersByUser throws', async () => {
