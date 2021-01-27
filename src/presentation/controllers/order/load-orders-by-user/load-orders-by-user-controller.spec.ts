@@ -1,4 +1,3 @@
-import { OrderModel } from '@/domain/models/order'
 import { mockOrderModel } from '@/domain/test/mock-order'
 import { throwError } from '@/domain/test/test-helpers'
 import { LoadOrdersByUser } from '@/domain/usecases/order/load-orders-by-user'
@@ -6,21 +5,13 @@ import { ok, serverError } from '@/presentation/helpers/http/http-helper'
 import { HttpRequest } from '../../authentication/login/login-controller-protocols'
 import { LoadOrdersByUserController } from './load-orders-by-user-controller'
 import MockDate from 'mockdate'
+import { mockLoadOrdersByUser } from '@/presentation/test/mock-order'
 
 const mockRequest = (): HttpRequest => ({
   params: {
     userId: 1
   }
 })
-
-const mockLoadOrdersByUser = (): LoadOrdersByUser => {
-  class LoadOrdersByUserStub implements LoadOrdersByUser {
-    async loadOrdersByUser (userId: number): Promise<OrderModel[]> {
-      return Promise.resolve([mockOrderModel()])
-    }
-  }
-  return new LoadOrdersByUserStub()
-}
 
 interface SutTypes {
   sut: LoadOrdersByUserController

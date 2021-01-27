@@ -3,7 +3,7 @@ import { mockOrderModel } from '@/domain/test/mock-order'
 import { throwError } from '@/domain/test/test-helpers'
 import { DbLoadOrdersByUser } from './db-load-orders-by-user'
 import MockDate from 'mockdate'
-import { mockLoadOrdersByUser } from '@/data/test/mock-db-order'
+import { mockLoadOrdersByUserRepository } from '@/data/test/mock-db-order'
 
 interface SutTypes {
   sut: DbLoadOrdersByUser
@@ -11,7 +11,7 @@ interface SutTypes {
 }
 
 const makeSut = (): SutTypes => {
-  const listOrdersByUserRepositoryStub = mockLoadOrdersByUser()
+  const listOrdersByUserRepositoryStub = mockLoadOrdersByUserRepository()
   const sut = new DbLoadOrdersByUser(listOrdersByUserRepositoryStub)
   return {
     sut,
