@@ -57,4 +57,20 @@ describe('Order Route', () => {
         .expect(200)
     })
   })
+  describe('PUT /orders/:orderId/status', () => {
+    test('should return a list of orders by user', async () => {
+      const typeModel = await Type.create({ description: 'any_description' })
+      const foodModel = await Food.create({ food: 'any_food1', price: 30, type_id: typeModel.id })
+      const account = await Account.create(mockAddAccountModel())
+      const { address, observation, date } = mockAddOrderParams()
+      const order = await Order.create({ status: 'RECEBIDO', address, observation, date, account_id: account.id, food_id: foodModel.id })
+
+      await request(app)
+        .put(`/api/orders/${order.id}/status`)
+        .send({
+          status: 'CONCLUIDO'
+        })
+        .expect(204)
+    })
+  })
 })
