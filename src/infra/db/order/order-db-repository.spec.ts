@@ -49,4 +49,24 @@ describe('OrderDb Repository', () => {
       expect(orders.length).toEqual(2)
     })
   })
+  describe('updateOrderStatus', () => {
+    test('Should update order status', async () => {
+      const typeModel = await Type.create({ description: 'any_description' })
+      const foodModel = await Food.create({ food: 'any_food1', price: 30, type_id: typeModel.id })
+      const account = await Account.create(mockAddAccountModel())
+      const { address, observation, date } = mockAddOrderParams()
+      const order = await Order.create({ status: 'RECEBIDO', address, observation, date, account_id: account.id, food_id: foodModel.id })
+      const sut = new OrderDbRepository()
+      await sut.updateOrderStatus(order.id, 'ENTREGUE')
+
+      const updatedOrder = await Order.findOne({
+        where: {
+          id: order.id
+        }
+      })
+
+      expect(updatedOrder).toBeTruthy()
+      expect(updatedOrder.status).toEqual('ENTREGUE')
+    })
+  })
 })
