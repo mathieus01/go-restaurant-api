@@ -1,14 +1,7 @@
 import { UpdateOrderStatusRepository } from '@/data/protocols/db/order/update-order-status-repository'
+import { mockUpdateOrderStatusRepository } from '@/data/test/mock-db-order'
 import { throwError } from '@/domain/test/test-helpers'
 import { DBUpdateOrderStatus } from './db-update-order-status'
-
-const mockUpdateOrderStatusRepository = (): UpdateOrderStatusRepository => {
-  class UpdateOrderStatusRepositoryStub implements UpdateOrderStatusRepository {
-    async updateOrderStatus (orderId: number, status: string): Promise<void> {
-    }
-  }
-  return new UpdateOrderStatusRepositoryStub()
-}
 
 interface SutTypes {
   sut: DBUpdateOrderStatus

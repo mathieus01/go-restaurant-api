@@ -1,17 +1,7 @@
 import { LoadOrderByIdRepository } from '@/data/protocols/db/order/load-order-by-id-repository'
-import { OrderModel } from '@/domain/models/order'
-import { mockOrderModel } from '@/domain/test/mock-order'
+import { mockLoadOrderByIdRepository } from '@/data/test/mock-db-order'
 import { throwError } from '@/domain/test/test-helpers'
 import { DbLoadOrderById } from './db-load-order-by-id'
-
-const mockLoadOrderByIdRepository = (): LoadOrderByIdRepository => {
-  class LoadOrderByIdRepositoryStub implements LoadOrderByIdRepository {
-    async loadById (id: number): Promise<OrderModel> {
-      return Promise.resolve(mockOrderModel())
-    }
-  }
-  return new LoadOrderByIdRepositoryStub()
-}
 
 interface SutTypes {
   sut: DbLoadOrderById
