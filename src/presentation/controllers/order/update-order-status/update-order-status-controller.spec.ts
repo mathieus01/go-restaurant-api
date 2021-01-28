@@ -1,13 +1,12 @@
-import { mockOrderModel } from '@/domain/test/mock-order'
 import { throwError } from '@/domain/test/test-helpers'
 import { forbidden, noContent, serverError } from '@/presentation/helpers/http/http-helper'
 import { HttpRequest } from '../../authentication/login/login-controller-protocols'
 import { UpdateOrderStatusController } from './update-order-status-controller'
 import MockDate from 'mockdate'
 import { LoadOrderById } from '@/domain/usecases/order/load-order-by-id'
-import { OrderModel } from '@/domain/models/order'
 import { InvalidParamError } from '@/presentation/errors/invalid-param-error'
 import { UpdateOrderStatus } from '@/domain/usecases/order/update-order-status'
+import { mockLoadOrdersById, mockUpdateOrderStatus } from '@/presentation/test/mock-order'
 
 const mockRequest = (): HttpRequest => ({
   params: {
@@ -17,22 +16,6 @@ const mockRequest = (): HttpRequest => ({
     status: 'any_status'
   }
 })
-
-const mockLoadOrdersById = (): LoadOrderById => {
-  class LoadOrderByIdStub implements LoadOrderById {
-    async loadById (id: number): Promise<OrderModel> {
-      return Promise.resolve(mockOrderModel())
-    }
-  }
-  return new LoadOrderByIdStub()
-}
-const mockUpdateOrderStatus = (): UpdateOrderStatus => {
-  class UpdateOrderStatusStub implements UpdateOrderStatus {
-    async updateOrderStatus (orderId: number, status: string): Promise<void> {
-    }
-  }
-  return new UpdateOrderStatusStub()
-}
 
 interface SutTypes {
   sut: UpdateOrderStatusController

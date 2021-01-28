@@ -1,24 +1,15 @@
-import { FoodModel } from '@/domain/models/foods'
 import { mockAddFoodRequestParams, mockFoodModel } from '@/domain/test/mock-menu'
 import { throwError } from '@/domain/test/test-helpers'
-import { AddFood, AddFoodRequestParams } from '@/domain/usecases/menu/add-food'
+import { AddFood } from '@/domain/usecases/menu/add-food'
 import { badRequest, ok, serverError } from '@/presentation/helpers/http/http-helper'
 import { mockValidation } from '@/presentation/test'
+import { mockAddFood } from '@/presentation/test/mock-food'
 import { HttpRequest, Validation } from '../../authentication/login/login-controller-protocols'
 import { AddFoodController } from './add-food-controller'
 
 const mockRequest = (): HttpRequest => ({
   body: mockAddFoodRequestParams()
 })
-
-const mockAddFood = (): AddFood => {
-  class AddFoodStub implements AddFood {
-    async add (addfoodParams: AddFoodRequestParams): Promise<FoodModel> {
-      return Promise.resolve(mockFoodModel())
-    }
-  }
-  return new AddFoodStub()
-}
 
 interface SutTypes {
   sut: AddFoodController

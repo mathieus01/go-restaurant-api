@@ -1,10 +1,9 @@
-import { FoodModel } from '@/domain/models/foods'
-import { mockFoodModel } from '@/domain/test/mock-menu'
 import { throwError } from '@/domain/test/test-helpers'
 import { LoadFoodById } from '@/domain/usecases/menu/load-food-by-id'
 import { RemoveFood } from '@/domain/usecases/menu/remove-food'
 import { InvalidParamError } from '@/presentation/errors/invalid-param-error'
 import { forbidden, noContent, serverError } from '@/presentation/helpers/http/http-helper'
+import { mockLoadFoodById, mockRemoveFood } from '@/presentation/test/mock-food'
 import { HttpRequest } from '../../authentication/login/login-controller-protocols'
 import { RemoveFoodController } from './remove-food-controller'
 
@@ -13,22 +12,6 @@ const makeHttpRequest = (): HttpRequest => ({
     foodId: 1
   }
 })
-
-const mockRemoveFood = (): RemoveFood => {
-  class RemoveFoodStub implements RemoveFood {
-    async remove (foodId: number): Promise<void> {
-    }
-  }
-  return new RemoveFoodStub()
-}
-const mockLoadFoodById = (): LoadFoodById => {
-  class LoadFoodByIdStub implements LoadFoodById {
-    async loadById (foodId: number): Promise<FoodModel> {
-      return Promise.resolve(mockFoodModel())
-    }
-  }
-  return new LoadFoodByIdStub()
-}
 
 interface SutTypes {
   sut: RemoveFoodController

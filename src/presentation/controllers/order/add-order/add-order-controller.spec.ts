@@ -4,22 +4,13 @@ import { HttpRequest, Validation } from '../../authentication/login/login-contro
 import { AddOrderController } from './add-order-controller'
 import MockDate from 'mockdate'
 import { badRequest, ok, serverError } from '@/presentation/helpers/http/http-helper'
-import { AddOrder, addOrderParams } from '@/domain/usecases/order/add-order'
-import { OrderModel } from '@/domain/models/order'
+import { AddOrder } from '@/domain/usecases/order/add-order'
 import { throwError } from '@/domain/test/test-helpers'
+import { mockAddOrder } from '@/presentation/test/mock-order'
 
 const mockRequest = (): HttpRequest => ({
   body: mockAddOrderParams()
 })
-
-const mockAddOrder = (): AddOrder => {
-  class AddOrderStub implements AddOrder {
-    async add (order: addOrderParams): Promise<OrderModel> {
-      return Promise.resolve(mockOrderModel())
-    }
-  }
-  return new AddOrderStub()
-}
 
 interface SutTypes {
   sut: AddOrderController

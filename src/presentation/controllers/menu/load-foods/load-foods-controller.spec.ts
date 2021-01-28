@@ -1,18 +1,9 @@
-import { FoodModel } from '@/domain/models/foods'
 import { mockFoodModel } from '@/domain/test/mock-menu'
 import { throwError } from '@/domain/test/test-helpers'
 import { LoadFoods } from '@/domain/usecases/menu/load-foods'
 import { ok, serverError } from '@/presentation/helpers/http/http-helper'
+import { mockLoadFoods } from '@/presentation/test/mock-food'
 import { LoadFoodsController } from './load-foods-controller'
-
-const mockLoadFoods = (): LoadFoods => {
-  class LoadFoodsStub implements LoadFoods {
-    async load (): Promise<FoodModel[]> {
-      return Promise.resolve([mockFoodModel()])
-    }
-  }
-  return new LoadFoodsStub()
-}
 
 interface SutTypes {
   sut: LoadFoodsController
