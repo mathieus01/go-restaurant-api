@@ -1,6 +1,6 @@
-import { RestaurantModel } from '@/domain/models/restaurant'
-import { mockRestaurantsModelList } from '@/domain/test/mock-restaurant'
-import { LoadRestaurantsRepository } from '../protocols/db/restaurant/load-restaurants-repository'
+import { mockRestaurantsModelList } from '@/domain/test'
+import { LoadRestaurantsRepository } from '@/data/protocols/db'
+import { RestaurantModel } from '@/domain/models'
 
 export const makeLoadRestaurantsRepositorySpy = (): LoadRestaurantsRepository => {
   class LoadRestaurantsRepositorySpy implements LoadRestaurantsRepository {

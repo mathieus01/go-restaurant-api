@@ -1,7 +1,7 @@
-import Account from '@/infra/models/account-model'
+import app from '@/main/config/app'
+import { Account } from '@/infra/models'
 import { hash } from 'bcrypt'
 import request from 'supertest'
-import app from '../config/app'
 
 describe('Login Route', () => {
   beforeEach(async (done) => {

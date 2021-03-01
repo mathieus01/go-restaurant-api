@@ -1,7 +1,6 @@
-import { OrderModel } from '../models/order'
-import { addOrderParams } from '../usecases/order/add-order'
-import { mockAccountModel } from './mock-account'
-import { mockFoodModel } from './mock-menu'
+import { OrderModel } from '@/domain/models'
+import { addOrderParams } from '@/domain/usecases'
+import { mockAccountModel, mockFoodModel } from '@/domain/test'
 
 export const mockOrderModel = (): OrderModel => ({
   account: mockAccountModel(),

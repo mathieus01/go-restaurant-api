@@ -1,4 +1,4 @@
-import { FoodModel } from '@/domain/models/food'
+import { FoodModel } from '@/domain/models'
 
 export interface LoadFoodsRepository {
   loadAllFoods(): Promise<FoodModel[]>

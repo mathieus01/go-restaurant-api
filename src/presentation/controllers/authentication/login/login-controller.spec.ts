@@ -1,8 +1,8 @@
 import { LoginController } from './login-controller'
 import { Authentication, HttpRequest, Validation } from './login-controller-protocols'
-import { badRequest, ok, serverError, unauthorized } from '@/presentation/helpers/http/http-helper'
+import { badRequest, ok, serverError, unauthorized } from '@/presentation/helpers'
 import { mockAuthentication, mockValidation } from '@/presentation/test'
-import { throwError } from '@/domain/test/test-helpers'
+import { throwError } from '@/domain/test'
 
 const mockRequest = (): HttpRequest => ({
   body: {

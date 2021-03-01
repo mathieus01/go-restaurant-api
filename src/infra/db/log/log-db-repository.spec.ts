@@ -1,4 +1,4 @@
-import Log from '@/infra/models/log-model'
+import { Log } from '@/infra/models'
 import { LogDbRepository } from './log-db-repository'
 
 describe('LogDbRepository', () => {

@@ -1,7 +1,6 @@
-import { LoadRestaurantsRepository } from '@/data/protocols/db/restaurant/load-restaurants-repository'
-import { AccountModel } from '@/domain/models/account'
-import { RestaurantModel } from '@/domain/models/restaurant'
-import Account from '@/infra/models/account-model'
+import { LoadRestaurantsRepository } from '@/data/protocols/db'
+import { AccountModel, RestaurantModel } from '@/domain/models'
+import { Account } from '@/infra/models'
 
 export class RestaurantDbRepository implements LoadRestaurantsRepository {
   async loadAll (): Promise<RestaurantModel[]> {

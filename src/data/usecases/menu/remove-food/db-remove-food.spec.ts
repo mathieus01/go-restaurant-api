@@ -1,7 +1,7 @@
-import { RemoveFoodRepository } from '@/data/protocols/db/menu/remove-food-repository'
-import { mockRemoveFoodRepository } from '@/data/test/mock-db-food'
-import { throwError } from '@/domain/test/test-helpers'
 import { DbRemoveFood } from './db-remove-food'
+import { RemoveFoodRepository } from '@/data/protocols/db'
+import { mockRemoveFoodRepository } from '@/data/test'
+import { throwError } from '@/domain/test'
 
 interface SutTypes {
   sut: DbRemoveFood

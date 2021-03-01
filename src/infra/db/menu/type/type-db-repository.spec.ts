@@ -1,6 +1,6 @@
-import { mockAddTypeParams } from '@/domain/test/mock-menu'
-import Type from '@/infra/models/type-model'
 import { TypeDbRepository } from './type-db-repository'
+import { mockAddTypeParams } from '@/domain/test'
+import { Type } from '@/infra/models'
 
 describe('Type Db Repository', () => {
   beforeAll(async (done) => {

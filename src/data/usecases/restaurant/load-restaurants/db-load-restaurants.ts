@@ -1,6 +1,6 @@
-import { LoadRestaurantsRepository } from '@/data/protocols/db/restaurant/load-restaurants-repository'
-import { RestaurantModel } from '@/domain/models/restaurant'
-import { LoadRestaurants } from '@/domain/usecases/restaurant/load-restaurants'
+import { LoadRestaurantsRepository } from '@/data/protocols/db'
+import { RestaurantModel } from '@/domain/models'
+import { LoadRestaurants } from '@/domain/usecases'
 
 export class DbLoadRestaurants implements LoadRestaurants {
   constructor (private readonly loadRestaurantsRepository: LoadRestaurantsRepository) {}

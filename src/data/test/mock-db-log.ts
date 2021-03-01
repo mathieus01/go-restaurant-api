@@ -1,4 +1,4 @@
-import { LogErrorRepository } from '../protocols/db/log/log-error-repository'
+import { LogErrorRepository } from '@/data/protocols/db'
 
 export const makeLogErrorRepository = (): LogErrorRepository => {
   class LogErrorRepositoryStub implements LogErrorRepository {

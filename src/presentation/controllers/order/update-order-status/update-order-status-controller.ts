@@ -1,8 +1,7 @@
-import { LoadOrderById } from '@/domain/usecases/order/load-order-by-id'
-import { UpdateOrderStatus } from '@/domain/usecases/order/update-order-status'
-import { InvalidParamError } from '@/presentation/errors/invalid-param-error'
-import { forbidden, noContent, serverError } from '@/presentation/helpers/http/http-helper'
-import { Controller, HttpRequest, HttpResponse } from '../../authentication/login/login-controller-protocols'
+import { InvalidParamError } from '@/presentation/errors'
+import { forbidden, noContent, serverError } from '@/presentation/helpers'
+import { Controller, HttpRequest, HttpResponse } from '@/presentation/protocols'
+import { LoadOrderById, UpdateOrderStatus } from '@/domain/usecases'
 
 export class UpdateOrderStatusController implements Controller {
   constructor (

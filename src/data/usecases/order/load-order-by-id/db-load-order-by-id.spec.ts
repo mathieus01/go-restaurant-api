@@ -1,7 +1,7 @@
-import { LoadOrderByIdRepository } from '@/data/protocols/db/order/load-order-by-id-repository'
-import { mockLoadOrderByIdRepository } from '@/data/test/mock-db-order'
-import { throwError } from '@/domain/test/test-helpers'
 import { DbLoadOrderById } from './db-load-order-by-id'
+import { LoadOrderByIdRepository } from '@/data/protocols/db'
+import { mockLoadOrderByIdRepository } from '@/data/test'
+import { throwError } from '@/domain/test'
 
 interface SutTypes {
   sut: DbLoadOrderById

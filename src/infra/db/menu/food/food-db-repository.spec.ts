@@ -1,7 +1,6 @@
-import { mockAddFoodParams, mockAddTypeParams } from '@/domain/test/mock-menu'
-import Food from '@/infra/models/food-model'
-import Type from '@/infra/models/type-model'
 import { FoodDbRepository } from './food-db-repository'
+import { mockAddFoodParams, mockAddTypeParams } from '@/domain/test'
+import { Food, Type } from '@/infra/models'
 
 describe('Food Db Repository', () => {
   beforeEach(async (done) => {

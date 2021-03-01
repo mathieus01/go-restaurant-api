@@ -1,7 +1,7 @@
-import { LoadFoodByIdRepository } from '@/data/protocols/db/menu/load-food-by-id-repository'
-import { mockLoadFoodByIdRepository } from '@/data/test/mock-db-food'
-import { throwError } from '@/domain/test/test-helpers'
 import { DbLoadFoodById } from './db-load-food-by-id'
+import { LoadFoodByIdRepository } from '@/data/protocols/db'
+import { mockLoadFoodByIdRepository } from '@/data/test'
+import { throwError } from '@/domain/test'
 
 interface SutTypes {
   sut: DbLoadFoodById

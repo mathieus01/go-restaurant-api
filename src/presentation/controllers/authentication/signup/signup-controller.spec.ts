@@ -1,9 +1,9 @@
 import { SignUpController } from './signup-controller'
 import { AddAccount, Validation, Authentication, HttpRequest } from './signup-controller-protocols'
-import { badRequest, forbidden, ok, serverError } from '@/presentation/helpers/http/http-helper'
+import { badRequest, forbidden, ok, serverError } from '@/presentation/helpers'
 import { mockAddAccount, mockAuthentication, mockValidation } from '@/presentation/test'
 import { EmailInUseError } from '@/presentation/errors'
-import { throwError } from '@/domain/test/test-helpers'
+import { throwError } from '@/domain/test'
 
 const mockRequest = (): HttpRequest => ({
   body: {

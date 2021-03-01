@@ -1,4 +1,4 @@
-import { RestaurantModel } from '../models/restaurant'
+import { RestaurantModel } from '@/domain/models'
 
 export const mockRestaurantModel = (): RestaurantModel => ({
   id: 1,

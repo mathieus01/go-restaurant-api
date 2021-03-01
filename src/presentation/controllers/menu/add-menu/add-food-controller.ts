@@ -1,6 +1,6 @@
-import { AddFood } from '@/domain/usecases/menu/add-food'
-import { badRequest, ok, serverError } from '@/presentation/helpers/http/http-helper'
-import { Controller, HttpRequest, HttpResponse, Validation } from '../../authentication/login/login-controller-protocols'
+import { AddFood } from '@/domain/usecases'
+import { badRequest, ok, serverError } from '@/presentation/helpers'
+import { Controller, HttpRequest, HttpResponse, Validation } from '@/presentation/protocols'
 
 export class AddFoodController implements Controller {
   constructor (

@@ -1,8 +1,7 @@
-import { LoadFoodById } from '@/domain/usecases/menu/load-food-by-id'
-import { RemoveFood } from '@/domain/usecases/menu/remove-food'
-import { InvalidParamError } from '@/presentation/errors/invalid-param-error'
-import { forbidden, noContent, serverError } from '@/presentation/helpers/http/http-helper'
-import { Controller, HttpRequest, HttpResponse } from '../../authentication/login/login-controller-protocols'
+import { InvalidParamError } from '@/presentation/errors'
+import { forbidden, noContent, serverError } from '@/presentation/helpers'
+import { Controller, HttpRequest, HttpResponse } from '@/presentation/protocols'
+import { LoadFoodById, RemoveFood } from '@/domain/usecases'
 
 export class RemoveFoodController implements Controller {
   constructor (

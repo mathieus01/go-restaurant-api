@@ -1,5 +1,5 @@
-import { LogErrorRepository } from '@/data/protocols/db/log/log-error-repository'
-import Log from '@/infra/models/log-model'
+import { LogErrorRepository } from '@/data/protocols/db'
+import { Log } from '@/infra/models'
 
 export class LogDbRepository implements LogErrorRepository {
   async logError (stack: string): Promise<void> {

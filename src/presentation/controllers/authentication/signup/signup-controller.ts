@@ -1,5 +1,5 @@
 import { EmailInUseError } from '@/presentation/errors'
-import { badRequest, forbidden, ok, serverError } from '@/presentation/helpers/http/http-helper'
+import { badRequest, forbidden, ok, serverError } from '@/presentation/helpers'
 import { Authentication, Controller, HttpRequest, HttpResponse, Validation, AddAccount } from './signup-controller-protocols'
 
 export class SignUpController implements Controller {

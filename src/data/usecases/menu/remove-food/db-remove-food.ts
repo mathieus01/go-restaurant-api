@@ -1,5 +1,5 @@
-import { RemoveFoodRepository } from '@/data/protocols/db/menu/remove-food-repository'
-import { RemoveFood } from '@/domain/usecases/menu/remove-food'
+import { RemoveFoodRepository } from '@/data/protocols/db'
+import { RemoveFood } from '@/domain/usecases'
 
 export class DbRemoveFood implements RemoveFood {
   constructor (

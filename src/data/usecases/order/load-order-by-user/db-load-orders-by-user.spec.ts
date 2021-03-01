@@ -1,9 +1,8 @@
-import { LoadOrdersByUserRepository } from '@/data/protocols/db/order/load-orders-by-user-repository'
-import { mockOrderModel } from '@/domain/test/mock-order'
-import { throwError } from '@/domain/test/test-helpers'
 import { DbLoadOrdersByUser } from './db-load-orders-by-user'
+import { LoadOrdersByUserRepository } from '@/data/protocols/db'
+import { mockOrderModel, throwError } from '@/domain/test'
+import { mockLoadOrdersByUserRepository } from '@/data/test'
 import MockDate from 'mockdate'
-import { mockLoadOrdersByUserRepository } from '@/data/test/mock-db-order'
 
 interface SutTypes {
   sut: DbLoadOrdersByUser

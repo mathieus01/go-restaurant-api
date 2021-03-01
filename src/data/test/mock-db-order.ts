@@ -1,16 +1,14 @@
-import { AccountModel } from '@/domain/models/account'
-import { FoodModel } from '@/domain/models/food'
-import { OrderModel } from '@/domain/models/order'
-import { mockAccountModel } from '@/domain/test/mock-account'
-import { mockFoodModel } from '@/domain/test/mock-menu'
-import { mockOrderModel } from '@/domain/test/mock-order'
-import { addOrderParams } from '@/domain/usecases/order/add-order'
-import { LoadAccountByIdRepository } from '../protocols/db/account/load-account-by-id-repository'
-import { LoadFoodByFoodTypeAndSizeIdsRepository } from '../protocols/db/menu/load-food-by-food-type-size-ids-repository'
-import { AddOrderRepository } from '../protocols/db/order/add-order-repository'
-import { LoadOrderByIdRepository } from '../protocols/db/order/load-order-by-id-repository'
-import { LoadOrdersByUserRepository } from '../protocols/db/order/load-orders-by-user-repository'
-import { UpdateOrderStatusRepository } from '../protocols/db/order/update-order-status-repository'
+import { AccountModel, FoodModel, OrderModel } from '@/domain/models'
+import { mockAccountModel, mockFoodModel, mockOrderModel } from '@/domain/test'
+import { addOrderParams } from '@/domain/usecases'
+import {
+  LoadAccountByIdRepository,
+  LoadFoodByFoodTypeAndSizeIdsRepository,
+  AddOrderRepository,
+  LoadOrderByIdRepository,
+  LoadOrdersByUserRepository,
+  UpdateOrderStatusRepository
+} from '@/data/protocols/db'
 
 export const mockAddOrderRepository = (): AddOrderRepository => {
   class AddOrderRepositoryStub implements AddOrderRepository {

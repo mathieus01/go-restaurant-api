@@ -1,10 +1,7 @@
-import { AddFoodRepository } from '@/data/protocols/db/menu/add-food-repository'
-import { AddTypeRepository } from '@/data/protocols/db/menu/add-type-repository'
-import { mockAddFoodParams, mockAddFoodRequestParams, mockFoodModel } from '@/domain/test/mock-menu'
-import { mockAddFoodRepository, mockAddTypeRepository, mockLoadTypeRepository } from '@/data/test/mock-db-food'
-import { throwError } from '@/domain/test/test-helpers'
+import { AddFoodRepository, AddTypeRepository, LoadTypeRepository } from '@/data/protocols/db'
+import { mockAddFoodParams, mockAddFoodRequestParams, mockFoodModel, throwError } from '@/domain/test'
+import { mockAddFoodRepository, mockAddTypeRepository, mockLoadTypeRepository } from '@/data/test'
 import { DbAddFood } from './db-add-food'
-import { LoadTypeRepository } from '@/data/protocols/db/menu/load-type-repository'
 
 interface SutSizes {
   sut: DbAddFood

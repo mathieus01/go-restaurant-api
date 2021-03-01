@@ -1,8 +1,7 @@
-import { LoadRestaurantsRepository } from '@/data/protocols/db/restaurant/load-restaurants-repository'
-import { makeLoadRestaurantsRepositorySpy } from '@/data/test/mock-db-restaurant'
-import { DbLoadRestaurants } from '@/data/usecases/restaurant/load-restaurants/db-load-restaurants'
-import { mockRestaurantsModelList } from '@/domain/test/mock-restaurant'
-import { throwError } from '@/domain/test/test-helpers'
+import { LoadRestaurantsRepository } from '@/data/protocols/db'
+import { makeLoadRestaurantsRepositorySpy } from '@/data/test'
+import { DbLoadRestaurants } from '@/data/usecases'
+import { mockRestaurantsModelList, throwError } from '@/domain/test'
 
 interface SutTypes {
   loadRestaurantsRepositorySpy: LoadRestaurantsRepository

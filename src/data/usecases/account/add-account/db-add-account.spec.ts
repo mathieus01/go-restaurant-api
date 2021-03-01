@@ -1,11 +1,8 @@
-import { Hasher } from '@/data/protocols/cryptography/hasher'
-import { AddAccountRepository } from '@/data/protocols/db/account/add-account-repository'
-import { LoadAccountByEmailRepository } from '@/data/protocols/db/account/load-account-by-email-repository'
-import { mockHasher } from '@/data/test/mock-cryptography'
-import { mockAddAccountRepository, mockLoadAccountByEmailRepository } from '@/data/test/mock-db-account'
-import { mockAccountModel, mockAddAccountModel } from '@/domain/test/mock-account'
-import { throwError } from '@/domain/test/test-helpers'
 import { DbAddAccount } from './db-add-account'
+import { Hasher } from '@/data/protocols/cryptography'
+import { AddAccountRepository, LoadAccountByEmailRepository } from '@/data/protocols/db'
+import { mockAddAccountRepository, mockLoadAccountByEmailRepository, mockHasher } from '@/data/test'
+import { mockAccountModel, mockAddAccountModel, throwError } from '@/domain/test'
 
 interface SutTypes {
   addAccountRepositoryStub: AddAccountRepository

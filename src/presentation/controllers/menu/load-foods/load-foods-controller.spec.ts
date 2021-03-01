@@ -1,9 +1,8 @@
-import { mockFoodModel } from '@/domain/test/mock-menu'
-import { throwError } from '@/domain/test/test-helpers'
-import { LoadFoods } from '@/domain/usecases/menu/load-foods'
-import { ok, serverError } from '@/presentation/helpers/http/http-helper'
-import { mockLoadFoods } from '@/presentation/test/mock-food'
 import { LoadFoodsController } from './load-foods-controller'
+import { mockFoodModel, throwError } from '@/domain/test'
+import { LoadFoods } from '@/domain/usecases'
+import { ok, serverError } from '@/presentation/helpers'
+import { mockLoadFoods } from '@/presentation/test'
 
 interface SutTypes {
   sut: LoadFoodsController

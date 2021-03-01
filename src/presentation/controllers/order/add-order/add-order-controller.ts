@@ -1,6 +1,6 @@
-import { AddOrder } from '@/domain/usecases/order/add-order'
-import { badRequest, ok, serverError } from '@/presentation/helpers/http/http-helper'
-import { Controller, HttpRequest, HttpResponse, Validation } from '../../authentication/login/login-controller-protocols'
+import { badRequest, ok, serverError } from '@/presentation/helpers'
+import { Controller, HttpRequest, HttpResponse, Validation } from '@/presentation/protocols'
+import { AddOrder } from '@/domain/usecases'
 
 export class AddOrderController implements Controller {
   constructor (

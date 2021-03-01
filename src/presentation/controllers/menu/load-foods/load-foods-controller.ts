@@ -1,6 +1,6 @@
-import { LoadFoods } from '@/domain/usecases/menu/load-foods'
-import { ok, serverError } from '@/presentation/helpers/http/http-helper'
-import { Controller, HttpRequest, HttpResponse } from '../../authentication/login/login-controller-protocols'
+import { LoadFoods } from '@/domain/usecases'
+import { ok, serverError } from '@/presentation/helpers'
+import { Controller, HttpRequest, HttpResponse } from '@/presentation/protocols'
 
 export class LoadFoodsController implements Controller {
   constructor (private readonly loadFoods: LoadFoods) {}

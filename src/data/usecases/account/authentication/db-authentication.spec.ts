@@ -1,12 +1,8 @@
-import { Encrypter } from '@/data/protocols/cryptography/encrypter'
-import { HashComparer } from '@/data/protocols/cryptography/hasher-compare'
-import { LoadAccountByEmailRepository } from '@/data/protocols/db/account/load-account-by-email-repository'
-import { UpdateAccessTokenRepository } from '@/data/protocols/db/account/update-access-token-repository'
-import { mockEncrypter, mockHashCompare } from '@/data/test/mock-cryptography'
-import { mockLoadAccountByEmailRepository, mockUpdateAccessTokenRepository } from '@/data/test/mock-db-account'
-import { mockAuthentication } from '@/domain/test/mock-account'
-import { throwError } from '@/domain/test/test-helpers'
 import { DbAuthentication } from './db-authentication'
+import { Encrypter, HashComparer } from '@/data/protocols/cryptography'
+import { LoadAccountByEmailRepository, UpdateAccessTokenRepository } from '@/data/protocols/db'
+import { mockEncrypter, mockHashCompare, mockLoadAccountByEmailRepository, mockUpdateAccessTokenRepository } from '@/data/test'
+import { mockAuthentication, throwError } from '@/domain/test'
 
 interface SutTypes {
   sut: DbAuthentication

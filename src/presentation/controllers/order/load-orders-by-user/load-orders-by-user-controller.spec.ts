@@ -1,11 +1,10 @@
-import { mockOrderModel } from '@/domain/test/mock-order'
-import { throwError } from '@/domain/test/test-helpers'
-import { LoadOrdersByUser } from '@/domain/usecases/order/load-orders-by-user'
-import { ok, serverError } from '@/presentation/helpers/http/http-helper'
-import { HttpRequest } from '../../authentication/login/login-controller-protocols'
 import { LoadOrdersByUserController } from './load-orders-by-user-controller'
-import MockDate from 'mockdate'
+import { ok, serverError } from '@/presentation/helpers'
+import { HttpRequest } from '@/presentation/protocols'
 import { mockLoadOrdersByUser } from '@/presentation/test/mock-order'
+import { mockOrderModel, throwError } from '@/domain/test'
+import { LoadOrdersByUser } from '@/domain/usecases'
+import MockDate from 'mockdate'
 
 const mockRequest = (): HttpRequest => ({
   params: {

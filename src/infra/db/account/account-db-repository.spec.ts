@@ -1,6 +1,6 @@
 import { AccountDbRepository } from './account-db-repository'
-import { mockAddAccountModel } from '@/domain/test/mock-account'
-import Account from '@/infra/models/account-model'
+import { mockAddAccountModel } from '@/domain/test'
+import { Account } from '@/infra/models'
 
 describe('Account Db Repository', () => {
   beforeEach(async (done) => {

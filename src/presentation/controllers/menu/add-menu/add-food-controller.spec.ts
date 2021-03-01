@@ -1,11 +1,9 @@
-import { mockAddFoodRequestParams, mockFoodModel } from '@/domain/test/mock-menu'
-import { throwError } from '@/domain/test/test-helpers'
-import { AddFood } from '@/domain/usecases/menu/add-food'
-import { badRequest, ok, serverError } from '@/presentation/helpers/http/http-helper'
-import { mockValidation } from '@/presentation/test'
-import { mockAddFood } from '@/presentation/test/mock-food'
-import { HttpRequest, Validation } from '../../authentication/login/login-controller-protocols'
 import { AddFoodController } from './add-food-controller'
+import { mockAddFoodRequestParams, mockFoodModel, throwError } from '@/domain/test'
+import { AddFood } from '@/domain/usecases'
+import { badRequest, ok, serverError } from '@/presentation/helpers'
+import { mockValidation, mockAddFood } from '@/presentation/test'
+import { HttpRequest, Validation } from '@/presentation/protocols'
 
 const mockRequest = (): HttpRequest => ({
   body: mockAddFoodRequestParams()

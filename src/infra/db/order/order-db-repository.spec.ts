@@ -1,10 +1,6 @@
-import { mockAddAccountModel } from '@/domain/test/mock-account'
-import { mockAddOrderParams } from '@/domain/test/mock-order'
-import Account from '@/infra/models/account-model'
-import Food from '@/infra/models/food-model'
-import Order from '@/infra/models/order-model'
-import Type from '@/infra/models/type-model'
 import { OrderDbRepository } from './order-db-repository'
+import { Account, Food, Order, Type } from '@/infra/models'
+import { mockAddAccountModel, mockAddOrderParams } from '@/domain/test'
 
 describe('OrderDb Repository', () => {
   beforeEach(async (done) => {

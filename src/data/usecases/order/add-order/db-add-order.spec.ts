@@ -1,11 +1,8 @@
-import { AddOrderRepository } from '@/data/protocols/db/order/add-order-repository'
 import { DbAddOrder } from './db-add-order'
+import { AddOrderRepository, LoadAccountByIdRepository, LoadFoodByIdRepository } from '@/data/protocols/db'
+import { mockAddOrderParams, mockOrderModel } from '@/domain/test'
+import { mockAddOrderRepository, mockLoadAccountByIdRepository, mockLoadFoodByIdRepository } from '@/data/test'
 import MockDate from 'mockdate'
-import { LoadAccountByIdRepository } from '@/data/protocols/db/account/load-account-by-id-repository'
-import { mockAddOrderParams, mockOrderModel } from '@/domain/test/mock-order'
-import { mockAddOrderRepository, mockLoadAccountByIdRepository } from '@/data/test/mock-db-order'
-import { LoadFoodByIdRepository } from '@/data/protocols/db/menu/load-food-by-id-repository'
-import { mockLoadFoodByIdRepository } from '@/data/test/mock-db-food'
 
 interface SutTypes {
   sut: DbAddOrder

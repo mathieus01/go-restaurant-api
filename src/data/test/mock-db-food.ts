@@ -1,13 +1,7 @@
-import { AddFoodRepository } from '@/data/protocols/db/menu/add-food-repository'
-import { AddTypeRepository } from '@/data/protocols/db/menu/add-type-repository'
-import { LoadFoodByIdRepository } from '@/data/protocols/db/menu/load-food-by-id-repository'
-import { AddFoodParams, AddTypeParams } from '@/domain/usecases/menu/add-food'
-import { mockFoodModel, mockTypeModel } from '@/domain/test/mock-menu'
-import { FoodModel } from '@/domain/models/food'
-import { LoadFoodsRepository } from '../protocols/db/menu/load-foods-repository'
-import { TypeModel } from '@/domain/models/type'
-import { LoadTypeRepository } from '../protocols/db/menu/load-type-repository'
-import { RemoveFoodRepository } from '../protocols/db/menu/remove-food-repository'
+import { AddFoodRepository, AddTypeRepository, LoadFoodByIdRepository, LoadFoodsRepository, LoadTypeRepository, RemoveFoodRepository } from '@/data/protocols/db'
+import { AddFoodParams, AddTypeParams } from '@/domain/usecases'
+import { mockFoodModel, mockTypeModel } from '@/domain/test'
+import { FoodModel, TypeModel } from '@/domain/models'
 
 export const mockAddTypeRepository = (): AddTypeRepository => {
   class AddTypeRepositoryStub implements AddTypeRepository {

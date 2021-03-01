@@ -1,11 +1,10 @@
-import { throwError } from '@/domain/test/test-helpers'
-import { LoadFoodById } from '@/domain/usecases/menu/load-food-by-id'
-import { RemoveFood } from '@/domain/usecases/menu/remove-food'
-import { InvalidParamError } from '@/presentation/errors/invalid-param-error'
-import { forbidden, noContent, serverError } from '@/presentation/helpers/http/http-helper'
-import { mockLoadFoodById, mockRemoveFood } from '@/presentation/test/mock-food'
-import { HttpRequest } from '../../authentication/login/login-controller-protocols'
 import { RemoveFoodController } from './remove-food-controller'
+import { InvalidParamError } from '@/presentation/errors'
+import { forbidden, noContent, serverError } from '@/presentation/helpers'
+import { mockLoadFoodById, mockRemoveFood } from '@/presentation/test'
+import { HttpRequest } from '@/presentation/protocols'
+import { throwError } from '@/domain/test'
+import { LoadFoodById, RemoveFood } from '@/domain/usecases'
 
 const makeHttpRequest = (): HttpRequest => ({
   params: {

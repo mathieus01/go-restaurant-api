@@ -1,6 +1,6 @@
-import { LoadFoodsRepository } from '@/data/protocols/db/menu/load-foods-repository'
-import { FoodModel } from '@/domain/models/food'
-import { LoadFoods } from '@/domain/usecases/menu/load-foods'
+import { LoadFoodsRepository } from '@/data/protocols/db'
+import { FoodModel } from '@/domain/models'
+import { LoadFoods } from '@/domain/usecases'
 
 export class DbLoadFoods implements LoadFoods {
   constructor (private readonly loadFoodsRepository: LoadFoodsRepository) {}

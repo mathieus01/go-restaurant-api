@@ -1,6 +1,6 @@
-import { LoadOrdersByUser } from '@/domain/usecases/order/load-orders-by-user'
-import { ok, serverError } from '@/presentation/helpers/http/http-helper'
-import { Controller, HttpRequest, HttpResponse } from '../../authentication/login/login-controller-protocols'
+import { ok, serverError } from '@/presentation/helpers'
+import { Controller, HttpRequest, HttpResponse } from '@/presentation/protocols'
+import { LoadOrdersByUser } from '@/domain/usecases'
 
 export class LoadOrdersByUserController implements Controller {
   constructor (private readonly loadOrdersByUser: LoadOrdersByUser) {}

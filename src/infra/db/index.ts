@@ -1,0 +1,6 @@
+export * from './account/account-db-repository'
+export * from './log/log-db-repository'
+export * from './menu/food/food-db-repository'
+export * from './menu/type/type-db-repository'
+export * from './order/order-db-repository'
+export * from './restaurant/restaurant-db-repository'

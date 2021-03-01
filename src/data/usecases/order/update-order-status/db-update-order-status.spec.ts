@@ -1,7 +1,7 @@
-import { UpdateOrderStatusRepository } from '@/data/protocols/db/order/update-order-status-repository'
-import { mockUpdateOrderStatusRepository } from '@/data/test/mock-db-order'
-import { throwError } from '@/domain/test/test-helpers'
 import { DBUpdateOrderStatus } from './db-update-order-status'
+import { UpdateOrderStatusRepository } from '@/data/protocols/db'
+import { mockUpdateOrderStatusRepository } from '@/data/test'
+import { throwError } from '@/domain/test'
 
 interface SutTypes {
   sut: DBUpdateOrderStatus

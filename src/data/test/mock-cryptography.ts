@@ -1,6 +1,4 @@
-import { Encrypter } from '../protocols/cryptography/encrypter'
-import { Hasher } from '../protocols/cryptography/hasher'
-import { HashComparer } from '../protocols/cryptography/hasher-compare'
+import { Encrypter, Hasher, HashComparer } from '@/data/protocols/cryptography'
 
 export const mockHashCompare = (): HashComparer => {
   class HashCompareStub implements HashComparer {

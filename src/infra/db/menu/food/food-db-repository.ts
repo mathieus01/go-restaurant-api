@@ -1,10 +1,7 @@
-import { AddFoodRepository } from '@/data/protocols/db/menu/add-food-repository'
-import { LoadFoodByIdRepository } from '@/data/protocols/db/menu/load-food-by-id-repository'
-import { LoadFoodsRepository } from '@/data/protocols/db/menu/load-foods-repository'
-import { RemoveFoodRepository } from '@/data/protocols/db/menu/remove-food-repository'
-import { FoodModel } from '@/domain/models/food'
-import { AddFoodParams } from '@/domain/usecases/menu/add-food'
-import Food from '@/infra/models/food-model'
+import { AddFoodRepository, LoadFoodByIdRepository, LoadFoodsRepository, RemoveFoodRepository } from '@/data/protocols/db'
+import { FoodModel } from '@/domain/models'
+import { AddFoodParams } from '@/domain/usecases'
+import { Food } from '@/infra/models'
 
 export class FoodDbRepository implements AddFoodRepository, LoadFoodByIdRepository, LoadFoodsRepository, RemoveFoodRepository {
   async add (addFoodParams: AddFoodParams): Promise<FoodModel> {

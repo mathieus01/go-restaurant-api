@@ -1,12 +1,11 @@
-import { throwError } from '@/domain/test/test-helpers'
-import { forbidden, noContent, serverError } from '@/presentation/helpers/http/http-helper'
-import { HttpRequest } from '../../authentication/login/login-controller-protocols'
 import { UpdateOrderStatusController } from './update-order-status-controller'
+import { forbidden, noContent, serverError } from '@/presentation/helpers'
+import { HttpRequest } from '@/presentation/protocols'
+import { InvalidParamError } from '@/presentation/errors'
+import { mockLoadOrdersById, mockUpdateOrderStatus } from '@/presentation/test'
+import { LoadOrderById, UpdateOrderStatus } from '@/domain/usecases'
+import { throwError } from '@/domain/test'
 import MockDate from 'mockdate'
-import { LoadOrderById } from '@/domain/usecases/order/load-order-by-id'
-import { InvalidParamError } from '@/presentation/errors/invalid-param-error'
-import { UpdateOrderStatus } from '@/domain/usecases/order/update-order-status'
-import { mockLoadOrdersById, mockUpdateOrderStatus } from '@/presentation/test/mock-order'
 
 const mockRequest = (): HttpRequest => ({
   params: {

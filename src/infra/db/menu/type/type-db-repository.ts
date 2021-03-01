@@ -1,8 +1,7 @@
-import { AddTypeRepository } from '@/data/protocols/db/menu/add-type-repository'
-import { LoadTypeRepository } from '@/data/protocols/db/menu/load-type-repository'
-import { TypeModel } from '@/domain/models/type'
-import { AddTypeParams } from '@/domain/usecases/menu/add-food'
-import Type from '@/infra/models/type-model'
+import { AddTypeRepository, LoadTypeRepository } from '@/data/protocols/db'
+import { TypeModel } from '@/domain/models'
+import { AddTypeParams } from '@/domain/usecases'
+import { Type } from '@/infra/models'
 
 export class TypeDbRepository implements AddTypeRepository, LoadTypeRepository {
   async add (addTypeParams: AddTypeParams): Promise<TypeModel> {

@@ -1,12 +1,10 @@
-import { mockAddOrderParams, mockOrderModel } from '@/domain/test/mock-order'
-import { mockValidation } from '@/presentation/test'
-import { HttpRequest, Validation } from '../../authentication/login/login-controller-protocols'
 import { AddOrderController } from './add-order-controller'
+import { mockValidation, mockAddOrder } from '@/presentation/test'
+import { HttpRequest, Validation } from '@/presentation/protocols'
+import { badRequest, ok, serverError } from '@/presentation/helpers'
+import { mockAddOrderParams, mockOrderModel, throwError } from '@/domain/test'
+import { AddOrder } from '@/domain/usecases'
 import MockDate from 'mockdate'
-import { badRequest, ok, serverError } from '@/presentation/helpers/http/http-helper'
-import { AddOrder } from '@/domain/usecases/order/add-order'
-import { throwError } from '@/domain/test/test-helpers'
-import { mockAddOrder } from '@/presentation/test/mock-order'
 
 const mockRequest = (): HttpRequest => ({
   body: mockAddOrderParams()

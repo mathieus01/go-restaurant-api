@@ -1,5 +1,5 @@
-import { UpdateOrderStatusRepository } from '@/data/protocols/db/order/update-order-status-repository'
-import { UpdateOrderStatus } from '@/domain/usecases/order/update-order-status'
+import { UpdateOrderStatusRepository } from '@/data/protocols/db'
+import { UpdateOrderStatus } from '@/domain/usecases'
 
 export class DBUpdateOrderStatus implements UpdateOrderStatus {
   constructor (private readonly updateOrderStatusRepository: UpdateOrderStatusRepository) {}

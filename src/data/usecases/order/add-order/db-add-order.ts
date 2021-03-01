@@ -1,8 +1,6 @@
-import { LoadAccountByIdRepository } from '@/data/protocols/db/account/load-account-by-id-repository'
-import { LoadFoodByIdRepository } from '@/data/protocols/db/menu/load-food-by-id-repository'
-import { AddOrderRepository } from '@/data/protocols/db/order/add-order-repository'
-import { OrderModel } from '@/domain/models/order'
-import { AddOrder, addOrderParams } from '@/domain/usecases/order/add-order'
+import { LoadAccountByIdRepository, LoadFoodByIdRepository, AddOrderRepository } from '@/data/protocols/db'
+import { OrderModel } from '@/domain/models'
+import { AddOrder, addOrderParams } from '@/domain/usecases'
 
 export class DbAddOrder implements AddOrder {
   constructor (

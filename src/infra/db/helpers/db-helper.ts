@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize'
-import dbConfigDataBase from '@/infra/db/config/database'
+import { database as dbConfigDataBase } from '@/infra/db/config/database'
 
 class Database {
   public connection: Sequelize
