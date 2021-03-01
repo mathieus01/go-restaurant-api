@@ -1,6 +1,6 @@
-import { Router } from 'express'
+import { makeAddFoodController, makeLoadFoodsController, makeRemoveFoodController } from '@/main/factories/controllers'
 import { adaptRoute } from '@/main/adapters'
-import { makeAddFoodController, makeLoadFoodsController, makeRemoveFoodController } from '@/main/factories/controllers/menu'
+import { Router } from 'express'
 
 export default (router: Router): void => {
   router.post('/menu', adaptRoute(makeAddFoodController()))

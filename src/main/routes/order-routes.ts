@@ -1,5 +1,5 @@
 import { adaptRoute } from '@/main/adapters'
-import { makeAddOrderController, makeLoadOrdersByUserController, makeUpdateOrderStatusController } from '@/main/factories/controllers/order'
+import { makeAddOrderController, makeLoadOrdersByUserController, makeUpdateOrderStatusController } from '@/main/factories/controllers'
 import { Router } from 'express'
 
 export default (router: Router): void => {

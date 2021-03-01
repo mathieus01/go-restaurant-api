@@ -1,6 +1,5 @@
 import { Validation } from '@/presentation/protocols'
-import { RequiredFieldValidation } from '@/validation/validators/required-filed-validation'
-import { ValidationComposite } from '@/validation/validators/validation-composite'
+import { RequiredFieldValidation, ValidationComposite } from '@/validation/validators'
 
 export const makeAddOrderValidation = (): ValidationComposite => {
   const validations: Validation[] = []

@@ -1,7 +1,6 @@
-import { makeLogControllerDecorator } from '@/main/factories/decorators/log-controller-decorator-factory'
-import { makeDbAddAccount } from '@/main/factories/usecases/account/add-account/db-add-account-factory'
-import { makeDbAuthentication } from '@/main/factories/usecases/account/authentication/db-authentication-factory'
-import { SignUpController } from '@/presentation/controllers/authentication/signup/signup-controller'
+import { makeLogControllerDecorator } from '@/main/factories/decorators'
+import { makeDbAddAccount, makeDbAuthentication } from '@/main/factories/usecases'
+import { SignUpController } from '@/presentation/controllers'
 import { Controller } from '@/presentation/protocols'
 import { makeSignUpValidationFactory } from './signup-validation-factory'
 

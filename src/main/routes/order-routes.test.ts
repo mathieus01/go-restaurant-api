@@ -1,12 +1,7 @@
-import { mockAddAccountModel } from '@/domain/test/mock-account'
-import { mockAddFoodParams, mockAddTypeParams } from '@/domain/test/mock-menu'
-import { mockAddOrderParams } from '@/domain/test/mock-order'
-import Account from '@/infra/models/account-model'
-import Food from '@/infra/models/food-model'
-import Order from '@/infra/models/order-model'
-import Type from '@/infra/models/type-model'
+import app from '@/main/config/app'
+import { mockAddFoodParams, mockAddTypeParams, mockAddAccountModel, mockAddOrderParams } from '@/domain/test'
+import { Account, Food, Order, Type } from '@/infra/models'
 import request from 'supertest'
-import app from '../config/app'
 
 describe('Order Route', () => {
   afterAll(async done => {
