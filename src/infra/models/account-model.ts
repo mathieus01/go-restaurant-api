@@ -9,6 +9,9 @@ class Account extends Model implements AccountModel {
   email: string
   password: string
   token?: string
+  isRestaurant: boolean
+  description?: string
+  address?: string
 }
 
 Account.init({
@@ -16,7 +19,10 @@ Account.init({
   email: DataTypes.STRING,
   password: DataTypes.STRING,
   token: DataTypes.STRING,
-  role: DataTypes.STRING
+  role: DataTypes.STRING,
+  isRestaurant: DataTypes.BOOLEAN,
+  description: DataTypes.STRING,
+  address: DataTypes.STRING
 }, {
   sequelize: DbHelper.connection,
   tableName: 'accounts'

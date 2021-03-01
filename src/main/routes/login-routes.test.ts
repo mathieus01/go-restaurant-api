@@ -17,7 +17,8 @@ describe('Login Route', () => {
       await Account.create({
         name: 'any_name',
         email: 'any_mail@mail.com',
-        password
+        password,
+        isRestaurant: false
       })
       await request(app)
         .post('/api/login')
@@ -45,7 +46,8 @@ describe('Login Route', () => {
           name: 'Matheus',
           email: 'mathieusnunes@gmail.com',
           password: '123',
-          passwordConfirmation: '123'
+          passwordConfirmation: '123',
+          isRestaurant: false
         })
         .expect(200)
     })

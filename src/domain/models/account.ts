@@ -3,5 +3,8 @@ export interface AccountModel {
   name: string
   email: string
   password: string
+  isRestaurant: boolean
+  description?: string
+  address?: string
   token?: string
 }

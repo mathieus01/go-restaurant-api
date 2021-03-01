@@ -70,7 +70,8 @@ describe('DbAddAccount', () => {
     expect(addSpy).toHaveBeenLastCalledWith({
       name: 'any_name',
       email: 'any_email@mail.com',
-      password: 'any_hash'
+      password: 'any_hash',
+      isRestaurant: false
     })
   })
   test('Should throw if AddAccountRepository throws', async () => {

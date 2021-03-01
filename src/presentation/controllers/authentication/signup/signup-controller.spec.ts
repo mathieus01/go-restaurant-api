@@ -3,7 +3,6 @@ import { AddAccount, Validation, Authentication, HttpRequest } from './signup-co
 import { badRequest, forbidden, ok, serverError } from '@/presentation/helpers/http/http-helper'
 import { mockAddAccount, mockAuthentication, mockValidation } from '@/presentation/test'
 import { EmailInUseError } from '@/presentation/errors'
-import { mockAddAccountModel } from '@/domain/test/mock-account'
 import { throwError } from '@/domain/test/test-helpers'
 
 const mockRequest = (): HttpRequest => ({
@@ -11,7 +10,8 @@ const mockRequest = (): HttpRequest => ({
     name: 'any_name',
     email: 'any_email@mail.com',
     password: 'any_password',
-    passwordConfirmation: 'any_password'
+    passwordConfirmation: 'any_password',
+    isRestaurant: false
   }
 })
 
@@ -56,7 +56,12 @@ describe('SignUp Controller', () => {
     const request = mockRequest()
     const addSpy = jest.spyOn(addAccountStub, 'add')
     await sut.handle(request)
-    expect(addSpy).toHaveBeenCalledWith(mockAddAccountModel())
+    expect(addSpy).toHaveBeenCalledWith({
+      name: 'any_name',
+      email: 'any_email@mail.com',
+      password: 'any_password',
+      isRestaurant: false
+    })
   })
   test('Should return 403 if AddAccount returns null', async () => {
     const { sut, addAccountStub } = makeSut()
