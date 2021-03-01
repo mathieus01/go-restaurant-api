@@ -1,4 +1,4 @@
-import { FoodModel } from '@/domain/models/foods'
+import { FoodModel } from '@/domain/models/food'
 import { mockFoodModel } from '@/domain/test/mock-menu'
 import { AddFood, AddFoodRequestParams } from '@/domain/usecases/menu/add-food'
 import { LoadFoodById } from '@/domain/usecases/menu/load-food-by-id'

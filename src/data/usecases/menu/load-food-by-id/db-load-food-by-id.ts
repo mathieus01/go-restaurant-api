@@ -1,5 +1,5 @@
 import { LoadFoodByIdRepository } from '@/data/protocols/db/menu/load-food-by-id-repository'
-import { FoodModel } from '@/domain/models/foods'
+import { FoodModel } from '@/domain/models/food'
 import { LoadFoodById } from '@/domain/usecases/menu/load-food-by-id'
 
 export class DbLoadFoodById implements LoadFoodById {

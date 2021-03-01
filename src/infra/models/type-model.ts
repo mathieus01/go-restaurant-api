@@ -1,4 +1,4 @@
-import { TypeModel } from '@/domain/models/types'
+import { TypeModel } from '@/domain/models/type'
 import { Model, DataTypes } from 'sequelize'
 import DbHelper from '../db/helpers/db-helper'
 import Food from './food-model'

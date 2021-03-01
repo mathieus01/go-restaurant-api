@@ -1,6 +1,6 @@
 import { AddTypeRepository } from '@/data/protocols/db/menu/add-type-repository'
 import { LoadTypeRepository } from '@/data/protocols/db/menu/load-type-repository'
-import { TypeModel } from '@/domain/models/types'
+import { TypeModel } from '@/domain/models/type'
 import { AddTypeParams } from '@/domain/usecases/menu/add-food'
 import Type from '@/infra/models/type-model'
 

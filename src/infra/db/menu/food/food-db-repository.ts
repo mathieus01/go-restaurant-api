@@ -2,7 +2,7 @@ import { AddFoodRepository } from '@/data/protocols/db/menu/add-food-repository'
 import { LoadFoodByIdRepository } from '@/data/protocols/db/menu/load-food-by-id-repository'
 import { LoadFoodsRepository } from '@/data/protocols/db/menu/load-foods-repository'
 import { RemoveFoodRepository } from '@/data/protocols/db/menu/remove-food-repository'
-import { FoodModel } from '@/domain/models/foods'
+import { FoodModel } from '@/domain/models/food'
 import { AddFoodParams } from '@/domain/usecases/menu/add-food'
 import Food from '@/infra/models/food-model'
 

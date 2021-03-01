@@ -1,4 +1,4 @@
-import { TypeModel } from './types'
+import { TypeModel } from './type'
 
 export interface FoodModel {
   id?: number

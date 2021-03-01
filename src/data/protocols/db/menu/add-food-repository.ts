@@ -1,4 +1,4 @@
-import { FoodModel } from '@/domain/models/foods'
+import { FoodModel } from '@/domain/models/food'
 import { AddFoodParams } from '@/domain/usecases/menu/add-food'
 
 export interface AddFoodRepository {

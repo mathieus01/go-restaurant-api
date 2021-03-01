@@ -1,7 +1,7 @@
 import { AddFoodRepository } from '@/data/protocols/db/menu/add-food-repository'
 import { AddTypeRepository } from '@/data/protocols/db/menu/add-type-repository'
 import { LoadTypeRepository } from '@/data/protocols/db/menu/load-type-repository'
-import { FoodModel } from '@/domain/models/foods'
+import { FoodModel } from '@/domain/models/food'
 import { AddFood, AddFoodRequestParams } from '@/domain/usecases/menu/add-food'
 
 export class DbAddFood implements AddFood {

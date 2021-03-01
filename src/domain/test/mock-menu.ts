@@ -1,5 +1,5 @@
-import { FoodModel } from '../models/foods'
-import { TypeModel } from '../models/types'
+import { FoodModel } from '../models/food'
+import { TypeModel } from '../models/type'
 import { AddFoodParams, AddFoodRequestParams, AddTypeParams } from '../usecases/menu/add-food'
 
 export const mockTypeModel = (): TypeModel => ({

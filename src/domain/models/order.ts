@@ -1,5 +1,5 @@
 import { AccountModel } from './account'
-import { FoodModel } from './foods'
+import { FoodModel } from './food'
 
 export interface OrderModel {
   id?: number

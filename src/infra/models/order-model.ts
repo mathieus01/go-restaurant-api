@@ -1,5 +1,5 @@
 import { AccountModel } from '@/domain/models/account'
-import { FoodModel } from '@/domain/models/foods'
+import { FoodModel } from '@/domain/models/food'
 import { OrderModel } from '@/domain/models/order'
 import { Model, DataTypes } from 'sequelize'
 import DbHelper from '../db/helpers/db-helper'
