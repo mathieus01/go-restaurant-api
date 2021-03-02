@@ -1,4 +1,4 @@
-import { AddFoodRepository, AddTypeRepository, LoadFoodByIdRepository, LoadFoodsRepository, LoadTypeRepository, RemoveFoodRepository } from '@/data/protocols/db'
+import { AddFoodRepository, AddTypeRepository, LoadFoodByIdRepository, LoadFoodsByRestaurantRepository, LoadTypeRepository, RemoveFoodRepository } from '@/data/protocols/db'
 import { AddFoodParams, AddTypeParams } from '@/domain/usecases'
 import { mockFoodModel, mockTypeModel } from '@/domain/test'
 import { FoodModel, TypeModel } from '@/domain/models'
@@ -38,9 +38,9 @@ export const mockLoadFoodByIdRepository = (): LoadFoodByIdRepository => {
   return new LoadFoodByIdRepositoryStub()
 }
 
-export const mockLoadFoodsRepository = (): LoadFoodsRepository => {
-  class LoadFoodsRepositoryStub implements LoadFoodsRepository {
-    async loadAllFoods (): Promise<FoodModel[]> {
+export const mockLoadFoodsByRestaurantRepository = (): LoadFoodsByRestaurantRepository => {
+  class LoadFoodsRepositoryStub implements LoadFoodsByRestaurantRepository {
+    async loadByRestaurant (restaurantId: number): Promise<FoodModel[]> {
       return Promise.resolve([mockFoodModel()])
     }
   }

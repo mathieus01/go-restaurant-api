@@ -10,13 +10,13 @@ export class DbAddFood implements AddFood {
   ) {}
 
   async add (addfoodParams: AddFoodRequestParams): Promise<FoodModel> {
-    const { food, type, price } = addfoodParams
+    const { food, type, price, restaurantId } = addfoodParams
     let typeModel = await this.loadTypeRepository.loadByDescription(type)
     if (!typeModel) {
       typeModel = await this.addTypeRepository.add({ description: type })
     }
     if (typeModel) {
-      const foodModel = await this.addFoodRepository.add({ food, price, type: typeModel })
+      const foodModel = await this.addFoodRepository.add({ food, price, type: typeModel, restaurantId })
       return foodModel
     }
     return null

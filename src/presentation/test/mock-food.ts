@@ -2,7 +2,7 @@ import { FoodModel } from '@/domain/models/food'
 import { mockFoodModel } from '@/domain/test/mock-menu'
 import { AddFood, AddFoodRequestParams } from '@/domain/usecases/menu/add-food'
 import { LoadFoodById } from '@/domain/usecases/menu/load-food-by-id'
-import { LoadFoods } from '@/domain/usecases/menu/load-foods'
+import { LoadFoodsByRestaurant } from '@/domain/usecases/menu/load-foods-by-restaurant'
 import { RemoveFood } from '@/domain/usecases/menu/remove-food'
 
 export const mockAddFood = (): AddFood => {
@@ -14,13 +14,13 @@ export const mockAddFood = (): AddFood => {
   return new AddFoodStub()
 }
 
-export const mockLoadFoods = (): LoadFoods => {
-  class LoadFoodsStub implements LoadFoods {
+export const mockLoadFoodsByRestaurant = (): LoadFoodsByRestaurant => {
+  class LoadFoodsByRestaurantStub implements LoadFoodsByRestaurant {
     async load (): Promise<FoodModel[]> {
       return Promise.resolve([mockFoodModel()])
     }
   }
-  return new LoadFoodsStub()
+  return new LoadFoodsByRestaurantStub()
 }
 
 export const mockRemoveFood = (): RemoveFood => {

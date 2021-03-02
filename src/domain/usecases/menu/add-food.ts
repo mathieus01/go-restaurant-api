@@ -8,6 +8,7 @@ export interface AddTypeParams {
 export interface AddFoodParams {
   food?: string
   type?: AddTypeParams
+  restaurantId: number
   price?: number
 }
 
@@ -15,6 +16,7 @@ export interface AddFoodRequestParams {
   food?: string
   type?: string
   price?: number
+  restaurantId: number
 }
 
 export interface AddFood {

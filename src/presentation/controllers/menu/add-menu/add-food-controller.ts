@@ -10,12 +10,13 @@ export class AddFoodController implements Controller {
 
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
+      const { restaurantId } = httpRequest.params
       const { food, type, price } = httpRequest.body
-      const error = this.validation.validate({ food, type, price })
+      const error = this.validation.validate({ food, type, price, restaurantId })
       if (error) {
         return badRequest(error)
       }
-      const foodModel = await this.addFood.add({ food, type, price })
+      const foodModel = await this.addFood.add({ food, type, price, restaurantId })
       return ok(foodModel)
     } catch (error) {
       return serverError(error)

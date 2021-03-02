@@ -1,12 +1,12 @@
-import { AddFoodRepository, LoadFoodByIdRepository, LoadFoodsRepository, RemoveFoodRepository } from '@/data/protocols/db'
+import { AddFoodRepository, LoadFoodByIdRepository, LoadFoodsByRestaurantRepository, RemoveFoodRepository } from '@/data/protocols/db'
 import { FoodModel } from '@/domain/models'
 import { AddFoodParams } from '@/domain/usecases'
 import { Food } from '@/infra/models'
 
-export class FoodDbRepository implements AddFoodRepository, LoadFoodByIdRepository, LoadFoodsRepository, RemoveFoodRepository {
+export class FoodDbRepository implements AddFoodRepository, LoadFoodByIdRepository, LoadFoodsByRestaurantRepository, RemoveFoodRepository {
   async add (addFoodParams: AddFoodParams): Promise<FoodModel> {
-    const { food, type, price } = addFoodParams
-    const foodModel = await Food.create({ food, price, type_id: type.id })
+    const { food, type, price, restaurantId } = addFoodParams
+    const foodModel = await Food.create({ food, price, type_id: type.id, account_id: restaurantId })
     return foodModel
   }
 
@@ -15,7 +15,7 @@ export class FoodDbRepository implements AddFoodRepository, LoadFoodByIdReposito
     return foodModel
   }
 
-  async loadAllFoods (): Promise<FoodModel[]> {
+  async loadByRestaurant (restaurantId: number): Promise<FoodModel[]> {
     const foods = await Food.findAll({ order: [['food', 'ASC']] })
     return foods
   }

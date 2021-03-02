@@ -1,7 +1,7 @@
 import { AccountModel } from '@/domain/models/account'
 import { Model, DataTypes } from 'sequelize'
+import { Food, Order } from '.'
 import DbHelper from '../db/helpers/db-helper'
-import Order from './order-model'
 
 class Account extends Model implements AccountModel {
   id?: number
@@ -28,6 +28,8 @@ Account.init({
   tableName: 'accounts'
 })
 
+Account.hasMany(Food, { as: 'foods', foreignKey: 'account_id' })
+Food.belongsTo(Account, { as: 'account', foreignKey: 'account_id' })
 Account.hasMany(Order, { as: 'orders' })
 Order.belongsTo(Account, { as: 'account' })
 

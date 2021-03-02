@@ -6,7 +6,10 @@ import { mockValidation, mockAddFood } from '@/presentation/test'
 import { HttpRequest, Validation } from '@/presentation/protocols'
 
 const mockRequest = (): HttpRequest => ({
-  body: mockAddFoodRequestParams()
+  body: mockAddFoodRequestParams(),
+  params: {
+    restaurantId: 1
+  }
 })
 
 interface SutTypes {
@@ -27,7 +30,7 @@ describe('AddFoodController', () => {
     const { sut, validationStub } = makeSut()
     const validationSpy = jest.spyOn(validationStub, 'validate')
     await sut.handle(mockRequest())
-    expect(validationSpy).toHaveBeenLastCalledWith(mockAddFoodRequestParams())
+    expect(validationSpy).toHaveBeenCalledWith(mockAddFoodRequestParams())
   })
   test('Should return 400 if Validate returns an error', async () => {
     const { sut, validationStub } = makeSut()

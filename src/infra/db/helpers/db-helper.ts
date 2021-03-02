@@ -1,5 +1,4 @@
 import { Sequelize } from 'sequelize'
-import { database as dbConfigDataBase } from '@/infra/db/config/database'
 
 class Database {
   public connection: Sequelize
@@ -9,7 +8,7 @@ class Database {
   }
 
   init (): void {
-    const dbConfig = process.env.NODE_ENV === 'test' ? this.getDatabaseTest() : dbConfigDataBase
+    const dbConfig = process.env.NODE_ENV === 'test' ? this.getDatabaseTest() : this.makeDatabase()
     this.connection = new Sequelize(dbConfig)
   }
 
@@ -23,6 +22,19 @@ class Database {
       }
     }
   }
+
+  makeDatabase = (): any => ({
+    database: 'go-restaurant',
+    dialect: 'postgres',
+    host: 'localhost',
+    port: 5432,
+    username: 'docker',
+    password: 'docker',
+    define: {
+      timestamps: true,
+      underscored: true
+    }
+  })
 }
 
 const database: Database = new Database()

@@ -1,5 +1,5 @@
-export { default as Account } from './account-model'
-export { default as Food } from './food-model'
 export { default as Log } from './log-model'
 export { default as Order } from './order-model'
+export { default as Food } from './food-model'
 export { default as Type } from './type-model'
+export { default as Account } from './account-model'

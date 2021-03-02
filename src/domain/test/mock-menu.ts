@@ -19,15 +19,18 @@ export const mockFoodModel = (): FoodModel => ({
 export const mockAddFoodRequestParams = (): AddFoodRequestParams => ({
   food: 'any_food',
   type: 'any_description',
-  price: 30.00
+  price: 30.00,
+  restaurantId: 1
 })
 export const mockAddFoodParams = (): AddFoodParams => ({
   food: 'any_food',
   type: mockTypeModel(),
-  price: 30.00
+  price: 30.00,
+  restaurantId: 1
 })
 
 export const mockAddFoodParamsWithoutPrice = (): AddFoodRequestParams => ({
   food: 'any_food',
-  type: 'PIZZA'
+  type: 'PIZZA',
+  restaurantId: 1
 })

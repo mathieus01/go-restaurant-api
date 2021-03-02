@@ -1,4 +1,4 @@
-export const database = {
+export const makeDatabase = (): any => ({
   database: 'go-restaurant',
   dialect: 'postgres',
   host: 'localhost',
@@ -9,4 +9,4 @@ export const database = {
     timestamps: true,
     underscored: true
   }
-}
+})
