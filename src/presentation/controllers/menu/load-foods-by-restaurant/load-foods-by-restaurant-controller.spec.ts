@@ -3,7 +3,7 @@ import { mockFoodModel, throwError } from '@/domain/test'
 import { LoadFoodsByRestaurant } from '@/domain/usecases'
 import { ok, serverError } from '@/presentation/helpers'
 import { mockLoadFoodsByRestaurant } from '@/presentation/test'
-import { HttpRequest } from '../../authentication/login/login-controller-protocols'
+import { HttpRequest } from '@/presentation/protocols'
 
 const makeHttpRequest = (): HttpRequest => ({
   params: {
