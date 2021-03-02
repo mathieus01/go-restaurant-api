@@ -70,4 +70,22 @@ describe('Login Route', () => {
         .expect(204)
     })
   })
+  describe('GET /menu', () => {
+    test('Should return 200 on get a food by id', async () => {
+      const { id } = await Account.create({
+        name: 'any_name',
+        email: 'any_email@mail.com',
+        password: 'any_password',
+        isRestaurant: true
+      })
+
+      const { price } = mockAddFoodParams()
+      const typeModel = await Type.create(mockAddTypeParams())
+      const food = await Food.create({ food: 'any_food1', price, type_id: typeModel.id, account_id: id })
+
+      await request(app)
+        .get(`/api/menu/${food.id}`)
+        .expect(200)
+    })
+  })
 })
