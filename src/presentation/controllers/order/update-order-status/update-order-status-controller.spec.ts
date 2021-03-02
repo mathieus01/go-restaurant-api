@@ -2,7 +2,7 @@ import { UpdateOrderStatusController } from './update-order-status-controller'
 import { forbidden, noContent, serverError } from '@/presentation/helpers'
 import { HttpRequest } from '@/presentation/protocols'
 import { InvalidParamError } from '@/presentation/errors'
-import { mockLoadOrdersById, mockUpdateOrderStatus } from '@/presentation/test'
+import { mockLoadOrderById, mockUpdateOrderStatus } from '@/presentation/test'
 import { LoadOrderById, UpdateOrderStatus } from '@/domain/usecases'
 import { throwError } from '@/domain/test'
 import MockDate from 'mockdate'
@@ -23,7 +23,7 @@ interface SutTypes {
 }
 
 const makeSut = (): SutTypes => {
-  const loadOrderByIdStub = mockLoadOrdersById()
+  const loadOrderByIdStub = mockLoadOrderById()
   const updateOrderStatusStub = mockUpdateOrderStatus()
   const sut = new UpdateOrderStatusController(loadOrderByIdStub, updateOrderStatusStub)
   return {

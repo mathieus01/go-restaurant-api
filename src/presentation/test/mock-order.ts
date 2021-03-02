@@ -14,7 +14,7 @@ export const mockLoadOrdersByUser = (): LoadOrdersByUser => {
   return new LoadOrdersByUserStub()
 }
 
-export const mockLoadOrdersById = (): LoadOrderById => {
+export const mockLoadOrderById = (): LoadOrderById => {
   class LoadOrderByIdStub implements LoadOrderById {
     async loadById (id: number): Promise<OrderModel> {
       return Promise.resolve(mockOrderModel())
