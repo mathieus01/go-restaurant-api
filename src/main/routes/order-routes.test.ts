@@ -1,14 +1,17 @@
 import app from '@/main/config/app'
 import { mockAddFoodParams, mockAddTypeParams, mockAddAccountModel, mockAddOrderParams } from '@/domain/test'
 import { Account, Food, Order, Type } from '@/infra/models'
+import MockDate from 'mockdate'
 import request from 'supertest'
 
 describe('Order Route', () => {
   afterAll(async done => {
+    MockDate.reset()
     done()
   })
 
   beforeEach(async (done) => {
+    MockDate.set(new Date())
     await Food.destroy({
       where: {}
     })
@@ -84,6 +87,25 @@ describe('Order Route', () => {
           status: 'CONCLUIDO'
         })
         .expect(204)
+    })
+  })
+  describe('GET /orders/:orderId', () => {
+    test('should return a order by id', async () => {
+      const { id } = await Account.create({
+        name: 'any_name',
+        email: 'any_email@mail.com',
+        password: 'any_password',
+        isRestaurant: true
+      })
+      const typeModel = await Type.create({ description: 'any_description' })
+      const foodModel = await Food.create({ food: 'any_food1', price: 30, type_id: typeModel.id, account_id: id })
+      const account = await Account.create(mockAddAccountModel())
+      const { address, observation, date } = mockAddOrderParams()
+      const order = await Order.create({ status: 'RECEBIDO', address, observation, date, account_id: account.id, food_id: foodModel.id })
+
+      await request(app)
+        .get(`/api/orders/${order.id}`)
+        .expect(200)
     })
   })
 })
