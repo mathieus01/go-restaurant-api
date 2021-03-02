@@ -7,7 +7,9 @@ module.exports = {
     '!**/protocols/**',
     '!**/test/**',
     '!**/migrations/**',
-    '!**/db/helpers/**'
+    '!**/db/helpers/**',
+    '!**/db/config/**',
+    '!**/index.ts'
   ],
   coverageDirectory: 'coverage',
   coverageProvider: 'babel',
