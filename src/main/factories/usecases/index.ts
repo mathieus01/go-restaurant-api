@@ -1,4 +1,5 @@
 export * from './account/add-account/db-add-account-factory'
+export * from './account/load-account-by-token/db-load-account-by-token-factory'
 export * from './account/authentication/db-authentication-factory'
 export * from './menu/add-food/db-add-food-factory'
 export * from './menu/load-food-by-id/db-load-food-by-id-factory'
