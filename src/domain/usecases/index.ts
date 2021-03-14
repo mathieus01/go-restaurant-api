@@ -1,5 +1,6 @@
 export * from './account/add-account'
 export * from './account/authentication'
+export * from './account/load-account-by-token'
 export * from './menu/add-food'
 export * from './menu/load-food-by-id'
 export * from './menu/load-foods-by-restaurant'
