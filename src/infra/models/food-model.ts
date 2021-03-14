@@ -5,14 +5,18 @@ import { Order } from './'
 
 class Food extends Model implements FoodModel {
   id?: number
-  food: string
+  name: string
+  description: string
+  avatar?: string
   type?: TypeModel
   account: AccountModel
   price: number
 }
 
 Food.init({
-  food: DataTypes.STRING,
+  name: DataTypes.STRING,
+  description: DataTypes.STRING,
+  avatar: DataTypes.STRING,
   type_id: DataTypes.INTEGER,
   account_id: DataTypes.INTEGER,
   price: DataTypes.DOUBLE

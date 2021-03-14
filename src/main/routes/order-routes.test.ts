@@ -41,10 +41,10 @@ describe('Order Route', () => {
         password: 'any_password',
         isRestaurant: true
       })
-      const { food, price } = mockAddFoodParams()
+      const { name, description, price } = mockAddFoodParams()
       const typeModel = await Type.create(mockAddTypeParams())
       const account = await Account.create(mockAddAccountModel())
-      const foodModel = await Food.create({ food, price, type_id: typeModel.id, account_id: id })
+      const foodModel = await Food.create({ name, description, price, type_id: typeModel.id, account_id: id })
 
       const httpRequest = {
         food_id: foodModel.id,
@@ -71,7 +71,7 @@ describe('Order Route', () => {
         isRestaurant: true
       })
       const typeModel = await Type.create({ description: 'any_description' })
-      const foodModel = await Food.create({ food: 'any_food1', price: 30, type_id: typeModel.id, account_id: id })
+      const foodModel = await Food.create({ name: 'any_food1', description: 'any_description', price: 30, type_id: typeModel.id, account_id: id })
       const account = await Account.create(mockAddAccountModel())
       const { address, observation, date } = mockAddOrderParams()
       await Order.create({ status: 'RECEBIDO', address, observation, date, account_id: account.id, food_id: foodModel.id })
@@ -92,7 +92,7 @@ describe('Order Route', () => {
         isRestaurant: true
       })
       const typeModel = await Type.create({ description: 'any_description' })
-      const foodModel = await Food.create({ food: 'any_food1', price: 30, type_id: typeModel.id, account_id: id })
+      const foodModel = await Food.create({ name: 'any_food1', description: 'any_description', price: 30, type_id: typeModel.id, account_id: id })
       const account = await Account.create(mockAddAccountModel())
       const { address, observation, date } = mockAddOrderParams()
       const order = await Order.create({ status: 'RECEBIDO', address, observation, date, account_id: account.id, food_id: foodModel.id })
@@ -115,7 +115,7 @@ describe('Order Route', () => {
         isRestaurant: true
       })
       const typeModel = await Type.create({ description: 'any_description' })
-      const foodModel = await Food.create({ food: 'any_food1', price: 30, type_id: typeModel.id, account_id: id })
+      const foodModel = await Food.create({ name: 'any_food1', description: 'any_description', price: 30, type_id: typeModel.id, account_id: id })
       const account = await Account.create(mockAddAccountModel())
       const { address, observation, date } = mockAddOrderParams()
       const order = await Order.create({ status: 'RECEBIDO', address, observation, date, account_id: account.id, food_id: foodModel.id })

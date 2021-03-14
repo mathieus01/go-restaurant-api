@@ -25,21 +25,29 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true
       },
-      role: {
+      description: {
         type: Sequelize.STRING,
         allowNull: true
       },
-      is_restaurant: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false
+      type: {
+        type: Sequelize.STRING,
+        allowNull: true
       },
-      description: {
+      cover: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
+      avatar: {
         type: Sequelize.STRING,
         allowNull: true
       },
       address: {
         type: Sequelize.STRING,
         allowNull: true
+      },
+      is_restaurant: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false
       },
       created_at: {
         type: Sequelize.DATE,

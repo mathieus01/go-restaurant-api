@@ -18,7 +18,7 @@ const makeAccessToken = async (): Promise<string> => {
   return token
 }
 
-describe('Login Route', () => {
+describe('Menu Route', () => {
   afterAll(async done => {
     done()
   })
@@ -60,9 +60,9 @@ describe('Login Route', () => {
 
       const { price } = mockAddFoodParams()
       const typeModel = await Type.create(mockAddTypeParams())
-      await Food.create({ food: 'any_food1', price, type_id: typeModel.id, account_id: id })
-      await Food.create({ food: 'any_food2', price, type_id: typeModel.id, account_id: id })
-      await Food.create({ food: 'any_food3', price, type_id: typeModel.id, account_id: id })
+      await Food.create({ name: 'any_food1', description: 'any_description', price, type_id: typeModel.id, account_id: id })
+      await Food.create({ name: 'any_food2', description: 'any_description', price, type_id: typeModel.id, account_id: id })
+      await Food.create({ name: 'any_food3', description: 'any_description', price, type_id: typeModel.id, account_id: id })
 
       await request(app)
         .get(`/api/restaurants/${id}/menu`)
@@ -80,7 +80,7 @@ describe('Login Route', () => {
       })
       const { price } = mockAddFoodParams()
       const typeModel = await Type.create(mockAddTypeParams())
-      const food = await Food.create({ food: 'any_food1', price, type_id: typeModel.id, account_id: id })
+      const food = await Food.create({ name: 'any_food1', description: 'any_description', price, type_id: typeModel.id, account_id: id })
 
       await request(app)
         .delete(`/api/menu/${food.id}`)
@@ -99,7 +99,7 @@ describe('Login Route', () => {
 
       const { price } = mockAddFoodParams()
       const typeModel = await Type.create(mockAddTypeParams())
-      const food = await Food.create({ food: 'any_food1', price, type_id: typeModel.id, account_id: id })
+      const food = await Food.create({ name: 'any_food1', description: 'any_description', price, type_id: typeModel.id, account_id: id })
 
       await request(app)
         .get(`/api/menu/${food.id}`)

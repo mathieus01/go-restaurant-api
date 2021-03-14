@@ -3,7 +3,9 @@ import { TypeModel } from './type'
 
 export interface FoodModel {
   id?: number
-  food: string
+  name: string
+  description: string
+  avatar?: string
   type?: TypeModel
   account?: AccountModel
   price: number

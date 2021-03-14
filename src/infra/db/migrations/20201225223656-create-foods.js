@@ -9,9 +9,17 @@ module.exports = {
         autoIncrement: true,
         allowNull: false
       },
-      food: {
+      name: {
         type: Sequelize.STRING,
         allowNull: false
+      },
+      description: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      avatar: {
+        type: Sequelize.STRING,
+        allowNull: true
       },
       price: {
         type: Sequelize.DOUBLE,

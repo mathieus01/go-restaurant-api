@@ -7,4 +7,8 @@ export interface AccountModel {
   description?: string
   address?: string
   token?: string
+
+  avatar?: string
+  cover?: string
+  type?: string
 }

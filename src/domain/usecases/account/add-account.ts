@@ -5,6 +5,10 @@ export interface AddAccountParams {
   email: string
   password: string
   isRestaurant: boolean
+  avatar?: string
+  cover?: string
+  type?: string
+  description?: string
 }
 
 export interface AddAccount {

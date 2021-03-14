@@ -22,10 +22,10 @@ describe('Food Db Repository', () => {
       account.isRestaurant = true
       account.description = 'any_description'
       const accountModel = await Account.create(account)
-      const { food, price } = mockAddFoodParams()
+      const { name, description, price } = mockAddFoodParams()
       const typeModel = await Type.create(mockAddTypeParams())
       const sut = new FoodDbRepository()
-      const foodModel = await sut.add({ food, price, type: typeModel, restaurantId: accountModel.id })
+      const foodModel = await sut.add({ name, description, price, type: typeModel, restaurantId: accountModel.id })
       expect(foodModel).toBeTruthy()
     })
   })
@@ -36,9 +36,9 @@ describe('Food Db Repository', () => {
       account.isRestaurant = true
       account.description = 'any_description'
       const accountModel = await Account.create(account)
-      const { food, price } = mockAddFoodParams()
+      const { name, description, price } = mockAddFoodParams()
       const typeModel = await Type.create(mockAddTypeParams())
-      const foodModelFake = await Food.create({ food, price, type_id: typeModel.id, account_id: accountModel.id })
+      const foodModelFake = await Food.create({ name, description, price, type_id: typeModel.id, account_id: accountModel.id })
       const sut = new FoodDbRepository()
       const foodModel = await sut.loadById(foodModelFake.id)
       expect(foodModel).toBeTruthy()
@@ -54,14 +54,14 @@ describe('Food Db Repository', () => {
       const accountModel = await Account.create(account)
       const { price } = mockAddFoodParams()
       const typeModel = await Type.create(mockAddTypeParams())
-      await Food.create({ food: 'any_food1', price, type_id: typeModel.id, account_id: accountModel.id })
-      await Food.create({ food: 'any_food2', price, type_id: typeModel.id, account_id: accountModel.id })
+      await Food.create({ name: 'any_food1', description: 'any_description', price, type_id: typeModel.id, account_id: accountModel.id })
+      await Food.create({ name: 'any_food2', description: 'any_description', price, type_id: typeModel.id, account_id: accountModel.id })
       const sut = new FoodDbRepository()
       const foods = await sut.loadByRestaurant(accountModel.id)
       expect(foods).toBeTruthy()
       expect(foods.length).toEqual(2)
-      expect(foods[0].food).toEqual('any_food1')
-      expect(foods[1].food).toEqual('any_food2')
+      expect(foods[0].name).toEqual('any_food1')
+      expect(foods[1].name).toEqual('any_food2')
     })
   })
 
@@ -71,9 +71,9 @@ describe('Food Db Repository', () => {
       account.isRestaurant = true
       account.description = 'any_description'
       const accountModel = await Account.create(account)
-      const { price } = mockAddFoodParams()
+      const { description, price } = mockAddFoodParams()
       const typeModel = await Type.create(mockAddTypeParams())
-      const foodModel = await Food.create({ food: 'any_food1', price, type_id: typeModel.id, account_id: accountModel.id })
+      const foodModel = await Food.create({ name: 'any_food1', description, price, type_id: typeModel.id, account_id: accountModel.id })
       const sut = new FoodDbRepository()
       await sut.remove(foodModel.id)
       const foodRemoved = await sut.loadById(foodModel.id)

@@ -6,14 +6,18 @@ export interface AddTypeParams {
 }
 
 export interface AddFoodParams {
-  food?: string
+  name: string
+  description: string
+  avatar?: string
   type?: AddTypeParams
   restaurantId: number
   price?: number
 }
 
 export interface AddFoodRequestParams {
-  food?: string
+  name: string
+  description: string
+  avatar?: string
   type?: string
   price?: number
   restaurantId: number

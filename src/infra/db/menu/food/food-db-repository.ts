@@ -5,8 +5,8 @@ import { Food } from '@/infra/models'
 
 export class FoodDbRepository implements AddFoodRepository, LoadFoodByIdRepository, LoadFoodsByRestaurantRepository, RemoveFoodRepository {
   async add (addFoodParams: AddFoodParams): Promise<FoodModel> {
-    const { food, type, price, restaurantId } = addFoodParams
-    const foodModel = await Food.create({ food, price, type_id: type.id, account_id: restaurantId })
+    const { name, description, type, price, restaurantId } = addFoodParams
+    const foodModel = await Food.create({ name, description, price, type_id: type.id, account_id: restaurantId })
     return foodModel
   }
 
@@ -16,7 +16,7 @@ export class FoodDbRepository implements AddFoodRepository, LoadFoodByIdReposito
   }
 
   async loadByRestaurant (restaurantId: number): Promise<FoodModel[]> {
-    const foods = await Food.findAll({ order: [['food', 'ASC']] })
+    const foods = await Food.findAll({ order: [['name', 'ASC']] })
     return foods
   }
 

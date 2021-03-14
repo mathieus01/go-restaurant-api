@@ -11,26 +11,32 @@ export const mockAddTypeParams = (): AddTypeParams => ({
 
 export const mockFoodModel = (): FoodModel => ({
   id: 1,
-  food: 'any_food',
+  name: 'any_food',
+  description: 'any_description',
   type: mockTypeModel(),
   price: 30.00
 })
 
 export const mockAddFoodRequestParams = (): AddFoodRequestParams => ({
-  food: 'any_food',
+  name: 'any_food',
+  description: 'any_description',
   type: 'any_description',
+  avatar: 'any_image',
   price: 30.00,
   restaurantId: 1
 })
 export const mockAddFoodParams = (): AddFoodParams => ({
-  food: 'any_food',
+  name: 'any_food',
+  description: 'any_description',
   type: mockTypeModel(),
+  avatar: 'any_image',
   price: 30.00,
   restaurantId: 1
 })
 
 export const mockAddFoodParamsWithoutPrice = (): AddFoodRequestParams => ({
-  food: 'any_food',
+  name: 'any_food',
+  description: 'any_description',
   type: 'PIZZA',
   restaurantId: 1
 })
