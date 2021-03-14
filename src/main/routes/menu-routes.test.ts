@@ -2,6 +2,21 @@ import app from '@/main/config/app'
 import { mockAddFoodParams, mockAddFoodRequestParams, mockAddTypeParams } from '@/domain/test'
 import { Account, Food, Type } from '@/infra/models'
 import request from 'supertest'
+import { sign } from 'jsonwebtoken'
+import env from '../config/env'
+
+const makeAccessToken = async (): Promise<string> => {
+  const { id } = await Account.create({
+    name: 'any_name_token',
+    email: 'any_email_token@mail.com',
+    password: 'any_password_token',
+    isRestaurant: false
+  })
+
+  const token = sign({ id }, env.jwtSecret)
+  await Account.update({ token }, { where: { id } })
+  return token
+}
 
 describe('Login Route', () => {
   afterAll(async done => {
@@ -29,6 +44,7 @@ describe('Login Route', () => {
       await request(app)
         .post(`/api/restaurants/${id}/menu`)
         .send(mockAddFoodRequestParams())
+        .set('x-access-token', await makeAccessToken())
         .expect(200)
     })
   })
@@ -50,6 +66,7 @@ describe('Login Route', () => {
 
       await request(app)
         .get(`/api/restaurants/${id}/menu`)
+        .set('x-access-token', await makeAccessToken())
         .expect(200)
     })
   })
@@ -67,6 +84,7 @@ describe('Login Route', () => {
 
       await request(app)
         .delete(`/api/menu/${food.id}`)
+        .set('x-access-token', await makeAccessToken())
         .expect(204)
     })
   })
@@ -85,6 +103,7 @@ describe('Login Route', () => {
 
       await request(app)
         .get(`/api/menu/${food.id}`)
+        .set('x-access-token', await makeAccessToken())
         .expect(200)
     })
   })

@@ -3,6 +3,21 @@ import { mockAddFoodParams, mockAddTypeParams, mockAddAccountModel, mockAddOrder
 import { Account, Food, Order, Type } from '@/infra/models'
 import MockDate from 'mockdate'
 import request from 'supertest'
+import { sign } from 'jsonwebtoken'
+import env from '@/main/config/env'
+
+const makeAccessToken = async (): Promise<string> => {
+  const { id } = await Account.create({
+    name: 'any_name_token',
+    email: 'any_email_token@mail.com',
+    password: 'any_password_token',
+    isRestaurant: false
+  })
+
+  const token = sign({ id }, env.jwtSecret)
+  await Account.update({ token }, { where: { id } })
+  return token
+}
 
 describe('Order Route', () => {
   afterAll(async done => {
@@ -39,9 +54,9 @@ describe('Order Route', () => {
         account_id: account.id,
         status: 'INICIAL'
       }
-
       await request(app)
         .post('/api/orders')
+        .set('x-access-token', await makeAccessToken())
         .send(httpRequest)
         .expect(200)
     })
@@ -64,6 +79,7 @@ describe('Order Route', () => {
 
       await request(app)
         .post(`/api/orders/users/${account.id}`)
+        .set('x-access-token', await makeAccessToken())
         .expect(200)
     })
   })
@@ -83,6 +99,7 @@ describe('Order Route', () => {
 
       await request(app)
         .put(`/api/orders/${order.id}/status`)
+        .set('x-access-token', await makeAccessToken())
         .send({
           status: 'CONCLUIDO'
         })
@@ -105,6 +122,7 @@ describe('Order Route', () => {
 
       await request(app)
         .get(`/api/orders/${order.id}`)
+        .set('x-access-token', await makeAccessToken())
         .expect(200)
     })
   })
