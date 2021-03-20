@@ -2,34 +2,40 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    queryInterface.createTable('orders', {
+    await queryInterface.createTable('food_order', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false
       },
-      address: {
-        type: Sequelize.STRING,
+      amount: {
+        type: Sequelize.INTEGER,
         allowNull: false
       },
-      status: {
+      observation: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
       },
-      account_id: {
+      food_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'accounts',
+          model: 'foods',
           key: 'id'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },
-      date: {
-        type: Sequelize.DATE,
-        allowNull: false
+      order_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'orders',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       created_at: {
         type: Sequelize.DATE,
@@ -43,6 +49,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('orders')
+    await queryInterface.dropTable('food_order')
   }
 }

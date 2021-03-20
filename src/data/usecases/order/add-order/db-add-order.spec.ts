@@ -1,26 +1,23 @@
 import { DbAddOrder } from './db-add-order'
-import { AddOrderRepository, LoadAccountByIdRepository, LoadFoodByIdRepository } from '@/data/protocols/db'
-import { mockAddOrderParams, mockOrderModel } from '@/domain/test'
-import { mockAddOrderRepository, mockLoadAccountByIdRepository, mockLoadFoodByIdRepository } from '@/data/test'
+import { AddFoodsOrdersRepository, AddOrderRepository } from '@/data/protocols/db'
+import { mockAddOrderParams, mockOrderModel, mockAddFoodOrderParams } from '@/domain/test'
+import { mockAddOrderRepository, mockAddFoodsOrdersRepository } from '@/data/test'
 import MockDate from 'mockdate'
 
 interface SutTypes {
   sut: DbAddOrder
   addOrderRepositoryStub: AddOrderRepository
-  loadFoodByIdRepositoryStub: LoadFoodByIdRepository
-  loadAccountByIdRepositoryStub: LoadAccountByIdRepository
+  addFoodsOrdersRepositoryStub: AddFoodsOrdersRepository
 }
 
 const makeSut = (): SutTypes => {
   const addOrderRepositoryStub = mockAddOrderRepository()
-  const loadFoodByIdRepositoryStub = mockLoadFoodByIdRepository()
-  const loadAccountByIdRepositoryStub = mockLoadAccountByIdRepository()
-  const sut = new DbAddOrder(loadFoodByIdRepositoryStub, loadAccountByIdRepositoryStub, addOrderRepositoryStub)
+  const addFoodsOrdersRepositoryStub = mockAddFoodsOrdersRepository()
+  const sut = new DbAddOrder(addOrderRepositoryStub, addFoodsOrdersRepositoryStub)
   return {
     sut,
     addOrderRepositoryStub,
-    loadFoodByIdRepositoryStub,
-    loadAccountByIdRepositoryStub
+    addFoodsOrdersRepositoryStub
   }
 }
 
@@ -39,33 +36,23 @@ describe('DbAddOrder', () => {
     await sut.add(mockAddOrderParams())
     expect(addSpy).toHaveBeenCalledWith(mockAddOrderParams())
   })
-  test('Should call LoadFoodByFoodTypeAndSizeIds with correct values', async () => {
-    const { sut, loadFoodByIdRepositoryStub } = makeSut()
-    const loadSpy = jest.spyOn(loadFoodByIdRepositoryStub, 'loadById')
+  test('Should return null if AddOrderRepository return null', async () => {
+    const { sut, addOrderRepositoryStub } = makeSut()
+    jest.spyOn(addOrderRepositoryStub, 'add').mockResolvedValueOnce(null)
+    const response = await sut.add(mockAddOrderParams())
+    expect(response).toEqual(null)
+  })
+  test('Should call AddFoodsOrdersRepository with correct values', async () => {
+    const { sut, addFoodsOrdersRepositoryStub } = makeSut()
+    const foodOrderParam = mockAddFoodOrderParams()
+    const orderModel = mockOrderModel()
+    const addSpy = jest.spyOn(addFoodsOrdersRepositoryStub, 'add')
     await sut.add(mockAddOrderParams())
-    expect(loadSpy).toHaveBeenCalledWith(1)
-  })
-  test('Should return null if LoadFoodByFoodTypeAndSizeIds is not found', async () => {
-    const { sut, loadFoodByIdRepositoryStub } = makeSut()
-    jest.spyOn(loadFoodByIdRepositoryStub, 'loadById').mockReturnValueOnce(Promise.resolve(null))
-    const orderModel = await sut.add(mockAddOrderParams())
-    expect(orderModel).toBeFalsy()
-  })
-  test('Should call LoadAccountByIdRepository with correct values', async () => {
-    const { sut, loadFoodByIdRepositoryStub } = makeSut()
-    const loadSpy = jest.spyOn(loadFoodByIdRepositoryStub, 'loadById')
-    await sut.add(mockAddOrderParams())
-    expect(loadSpy).toHaveBeenCalledWith(1)
-  })
-  test('Should return null if LoadAccountByIdRepository is not found', async () => {
-    const { sut, loadAccountByIdRepositoryStub } = makeSut()
-    jest.spyOn(loadAccountByIdRepositoryStub, 'loadById').mockReturnValueOnce(Promise.resolve(null))
-    const orderModel = await sut.add(mockAddOrderParams())
-    expect(orderModel).toBeFalsy()
+    expect(addSpy).toHaveBeenCalledWith([{ ...foodOrderParam, order_id: orderModel.id }])
   })
   test('Should return a Order on success', async () => {
     const { sut } = makeSut()
     const orderModel = await sut.add(mockAddOrderParams())
-    expect(orderModel).toEqual(mockOrderModel())
+    expect(orderModel).toBeTruthy()
   })
 })

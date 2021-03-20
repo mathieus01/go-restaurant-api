@@ -1,7 +1,6 @@
 import { FoodModel, TypeModel, AccountModel } from '@/domain/models'
 import { Model, DataTypes } from 'sequelize'
 import DbHelper from '../db/helpers/db-helper'
-import { Order } from './'
 
 class Food extends Model implements FoodModel {
   id?: number
@@ -24,8 +23,5 @@ Food.init({
   sequelize: DbHelper.connection,
   tableName: 'foods'
 })
-
-Food.hasMany(Order, { as: 'orders' })
-Order.belongsTo(Food, { as: 'food' })
 
 export default Food

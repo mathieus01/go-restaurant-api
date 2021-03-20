@@ -7,7 +7,8 @@ import { AddOrder } from '@/domain/usecases'
 import MockDate from 'mockdate'
 
 const mockRequest = (): HttpRequest => ({
-  body: mockAddOrderParams()
+  body: mockAddOrderParams(),
+  accountId: 1
 })
 
 interface SutTypes {

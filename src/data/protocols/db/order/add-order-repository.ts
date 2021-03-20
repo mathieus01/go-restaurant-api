@@ -1,6 +1,6 @@
 import { OrderModel } from '@/domain/models'
-import { addOrderParams } from '@/domain/usecases'
+import { AddOrderParams } from '@/domain/usecases'
 
 export interface AddOrderRepository {
-  add(orderParam: addOrderParams): Promise<OrderModel>
+  add(orderParam: AddOrderParams): Promise<OrderModel>
 }

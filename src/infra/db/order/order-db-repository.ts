@@ -1,11 +1,18 @@
-import { Order } from '@/infra/models'
+import { Food, FoodOrder, Order } from '@/infra/models'
 import { AddOrderRepository, LoadOrderByIdRepository, LoadOrdersByUserRepository, UpdateOrderStatusRepository } from '@/data/protocols/db'
 import { OrderModel } from '@/domain/models'
-import { addOrderParams } from '@/domain/usecases'
+import { AddOrderParams } from '@/domain/usecases'
 
 export class OrderDbRepository implements AddOrderRepository, LoadOrdersByUserRepository, UpdateOrderStatusRepository, LoadOrderByIdRepository {
-  async add (orderParam: addOrderParams): Promise<OrderModel> {
-    const order = await Order.create(orderParam)
+  async add (orderParam: AddOrderParams): Promise<OrderModel> {
+    const { accountId, status, date, address } = orderParam
+    const order = await Order.create({
+      account_id: accountId,
+      status,
+      date,
+      address
+    })
+
     return order
   }
 
@@ -13,7 +20,12 @@ export class OrderDbRepository implements AddOrderRepository, LoadOrdersByUserRe
     const orders = await Order.findAll({
       where: {
         account_id: userId
-      }
+      },
+      include: [{
+        model: FoodOrder,
+        as: 'foodsOrder',
+        include: [{ model: Food, as: 'food' }]
+      }]
     })
     return orders
   }

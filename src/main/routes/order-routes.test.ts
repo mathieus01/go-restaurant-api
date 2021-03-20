@@ -43,16 +43,17 @@ describe('Order Route', () => {
       })
       const { name, description, price } = mockAddFoodParams()
       const typeModel = await Type.create(mockAddTypeParams())
-      const account = await Account.create(mockAddAccountModel())
       const foodModel = await Food.create({ name, description, price, type_id: typeModel.id, account_id: id })
 
       const httpRequest = {
-        food_id: foodModel.id,
-        observation: 'any_observation',
         date: new Date(),
         address: 'any_address',
-        account_id: account.id,
-        status: 'INICIAL'
+        status: 'any_status',
+        foodsOrder: [{
+          food_id: foodModel.id,
+          amount: 1,
+          observation: 'any_observation'
+        }]
       }
       await request(app)
         .post('/api/orders')
@@ -73,12 +74,12 @@ describe('Order Route', () => {
       const typeModel = await Type.create({ description: 'any_description' })
       const foodModel = await Food.create({ name: 'any_food1', description: 'any_description', price: 30, type_id: typeModel.id, account_id: id })
       const account = await Account.create(mockAddAccountModel())
-      const { address, observation, date } = mockAddOrderParams()
-      await Order.create({ status: 'RECEBIDO', address, observation, date, account_id: account.id, food_id: foodModel.id })
-      await Order.create({ status: 'RECEBIDO', address, observation, date, account_id: account.id, food_id: foodModel.id })
+      const { address, date } = mockAddOrderParams()
+      await Order.create({ status: 'RECEBIDO', address, date, account_id: account.id, food_id: foodModel.id })
+      await Order.create({ status: 'RECEBIDO', address, date, account_id: account.id, food_id: foodModel.id })
 
       await request(app)
-        .post(`/api/orders/users/${account.id}`)
+        .get(`/api/orders/users/${account.id}`)
         .set('x-access-token', await makeAccessToken())
         .expect(200)
     })
@@ -94,8 +95,8 @@ describe('Order Route', () => {
       const typeModel = await Type.create({ description: 'any_description' })
       const foodModel = await Food.create({ name: 'any_food1', description: 'any_description', price: 30, type_id: typeModel.id, account_id: id })
       const account = await Account.create(mockAddAccountModel())
-      const { address, observation, date } = mockAddOrderParams()
-      const order = await Order.create({ status: 'RECEBIDO', address, observation, date, account_id: account.id, food_id: foodModel.id })
+      const { address, date } = mockAddOrderParams()
+      const order = await Order.create({ status: 'RECEBIDO', address, date, account_id: account.id, food_id: foodModel.id })
 
       await request(app)
         .put(`/api/orders/${order.id}/status`)
@@ -117,8 +118,8 @@ describe('Order Route', () => {
       const typeModel = await Type.create({ description: 'any_description' })
       const foodModel = await Food.create({ name: 'any_food1', description: 'any_description', price: 30, type_id: typeModel.id, account_id: id })
       const account = await Account.create(mockAddAccountModel())
-      const { address, observation, date } = mockAddOrderParams()
-      const order = await Order.create({ status: 'RECEBIDO', address, observation, date, account_id: account.id, food_id: foodModel.id })
+      const { address, date } = mockAddOrderParams()
+      const order = await Order.create({ status: 'RECEBIDO', address, date, account_id: account.id, food_id: foodModel.id })
 
       await request(app)
         .get(`/api/orders/${order.id}`)

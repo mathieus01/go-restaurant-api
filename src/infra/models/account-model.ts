@@ -1,3 +1,4 @@
+import { FoodModel } from '@/domain/models'
 import { AccountModel } from '@/domain/models/account'
 import { Model, DataTypes } from 'sequelize'
 import { Food, Order } from '.'
@@ -12,6 +13,7 @@ class Account extends Model implements AccountModel {
   isRestaurant: boolean
   description?: string
   address?: string
+  foods?: FoodModel[]
   avatar?: string
   cover?: string
   type?: string
@@ -34,7 +36,7 @@ Account.init({
 })
 
 Account.hasMany(Food, { as: 'foods', foreignKey: 'account_id' })
-Food.belongsTo(Account, { as: 'account', foreignKey: 'account_id' })
+Food.belongsTo(Account, { as: 'restaurant', foreignKey: 'account_id' })
 Account.hasMany(Order, { as: 'orders' })
 Order.belongsTo(Account, { as: 'account' })
 

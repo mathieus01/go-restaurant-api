@@ -1,6 +1,6 @@
 import { OrderModel } from '@/domain/models/order'
 import { mockOrderModel } from '@/domain/test/mock-order'
-import { AddOrder, addOrderParams } from '@/domain/usecases/order/add-order'
+import { AddOrder, AddOrderParams } from '@/domain/usecases/order/add-order'
 import { LoadOrderById } from '@/domain/usecases/order/load-order-by-id'
 import { LoadOrdersByUser } from '@/domain/usecases/order/load-orders-by-user'
 import { UpdateOrderStatus } from '@/domain/usecases/order/update-order-status'
@@ -32,7 +32,7 @@ export const mockUpdateOrderStatus = (): UpdateOrderStatus => {
 
 export const mockAddOrder = (): AddOrder => {
   class AddOrderStub implements AddOrder {
-    async add (order: addOrderParams): Promise<OrderModel> {
+    async add (order: AddOrderParams): Promise<OrderModel> {
       return Promise.resolve(mockOrderModel())
     }
   }

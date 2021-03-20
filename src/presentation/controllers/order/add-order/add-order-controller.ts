@@ -9,12 +9,16 @@ export class AddOrderController implements Controller {
 
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
-      const { body } = httpRequest
+      const { body, accountId } = httpRequest
+      console.log(accountId)
+
       const error = this.validation.validate(body)
       if (error) {
+        console.log(error)
+
         return badRequest(error)
       }
-      const order = await this.addOrder.add(body)
+      const order = await this.addOrder.add({ ...body, accountId })
       return ok(order)
     } catch (error) {
       return serverError(error)

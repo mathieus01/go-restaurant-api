@@ -1,3 +1,5 @@
+import { FoodModel } from './food'
+
 export interface AccountModel {
   id?: number
   name: string
@@ -8,6 +10,7 @@ export interface AccountModel {
   address?: string
   token?: string
 
+  foods?: FoodModel[]
   avatar?: string
   cover?: string
   type?: string

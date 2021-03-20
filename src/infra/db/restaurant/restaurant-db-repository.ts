@@ -5,6 +5,7 @@ import { Account } from '@/infra/models'
 export class RestaurantDbRepository implements LoadRestaurantsRepository {
   async loadAll (): Promise<RestaurantModel[]> {
     const accounts = await Account.findAll({
+      include: 'foods',
       where: {
         isRestaurant: true
       }
@@ -17,7 +18,8 @@ export class RestaurantDbRepository implements LoadRestaurantsRepository {
       id: account.id,
       name: account.name,
       address: account.address,
-      description: account.description
+      description: account.description,
+      foods: account.foods
     }
   }
 

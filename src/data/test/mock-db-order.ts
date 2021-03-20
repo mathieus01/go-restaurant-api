@@ -1,6 +1,6 @@
 import { AccountModel, FoodModel, OrderModel } from '@/domain/models'
 import { mockAccountModel, mockFoodModel, mockOrderModel } from '@/domain/test'
-import { addOrderParams } from '@/domain/usecases'
+import { AddOrderParams } from '@/domain/usecases'
 import {
   LoadAccountByIdRepository,
   LoadFoodByFoodTypeAndSizeIdsRepository,
@@ -12,7 +12,7 @@ import {
 
 export const mockAddOrderRepository = (): AddOrderRepository => {
   class AddOrderRepositoryStub implements AddOrderRepository {
-    async add (order: addOrderParams): Promise<OrderModel> {
+    async add (order: AddOrderParams): Promise<OrderModel> {
       return Promise.resolve(mockOrderModel())
     }
   }
