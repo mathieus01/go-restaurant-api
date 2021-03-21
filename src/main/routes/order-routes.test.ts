@@ -63,7 +63,7 @@ describe('Order Route', () => {
     })
   })
 
-  describe('GET /orders/user/:userId', () => {
+  describe('GET /orders', () => {
     test('should return a list of orders by user', async () => {
       const { id } = await Account.create({
         name: 'any_name',
@@ -79,7 +79,7 @@ describe('Order Route', () => {
       await Order.create({ status: 'RECEBIDO', address, date, account_id: account.id, food_id: foodModel.id })
 
       await request(app)
-        .get(`/api/orders/users/${account.id}`)
+        .get('/api/orders')
         .set('x-access-token', await makeAccessToken())
         .expect(200)
     })

@@ -5,7 +5,7 @@ import { Router } from 'express'
 
 export default (router: Router): void => {
   router.post('/orders', auth, adaptRoute(makeAddOrderController()))
-  router.get('/orders/users/:userId', auth, adaptRoute(makeLoadOrdersByUserController()))
+  router.get('/orders', auth, adaptRoute(makeLoadOrdersByUserController()))
   router.put('/orders/:orderId/status', auth, adaptRoute(makeUpdateOrderStatusController()))
   router.get('/orders/:orderId', auth, adaptRoute(makeLoadOrderByIdController()))
 }

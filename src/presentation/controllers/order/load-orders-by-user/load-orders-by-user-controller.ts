@@ -7,8 +7,8 @@ export class LoadOrdersByUserController implements Controller {
 
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
-      const { userId } = httpRequest.params
-      const orders = await this.loadOrdersByUser.loadOrdersByUser(userId)
+      const { accountId } = httpRequest
+      const orders = await this.loadOrdersByUser.loadOrdersByUser(accountId)
       return ok(orders)
     } catch (error) {
       return serverError(error)

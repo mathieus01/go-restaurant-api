@@ -7,9 +7,7 @@ import { LoadOrdersByUser } from '@/domain/usecases'
 import MockDate from 'mockdate'
 
 const mockRequest = (): HttpRequest => ({
-  params: {
-    userId: 1
-  }
+  accountId: 1
 })
 
 interface SutTypes {
@@ -39,7 +37,7 @@ describe('LoadOrdersByUserController', () => {
     const { sut, loadOrdersByUserStub } = makeSut()
     const loadOrdersByUserSpy = jest.spyOn(loadOrdersByUserStub, 'loadOrdersByUser')
     await sut.handle(mockRequest())
-    expect(loadOrdersByUserSpy).toHaveBeenCalledWith(mockRequest().params.userId)
+    expect(loadOrdersByUserSpy).toHaveBeenCalledWith(mockRequest().accountId)
   })
 
   test('Should return 500 if loadOrdersByUser throws', async () => {
