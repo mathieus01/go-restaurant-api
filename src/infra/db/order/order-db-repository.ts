@@ -1,4 +1,4 @@
-import { Food, FoodOrder, Order } from '@/infra/models'
+import { Account, Food, FoodOrder, Order } from '@/infra/models'
 import { AddOrderRepository, LoadOrderByIdRepository, LoadOrdersByUserRepository, UpdateOrderStatusRepository } from '@/data/protocols/db'
 import { OrderModel } from '@/domain/models'
 import { AddOrderParams } from '@/domain/usecases'
@@ -24,7 +24,14 @@ export class OrderDbRepository implements AddOrderRepository, LoadOrdersByUserRe
       include: [{
         model: FoodOrder,
         as: 'foodsOrder',
-        include: [{ model: Food, as: 'food' }]
+        include: [{
+          model: Food,
+          as: 'food',
+          include: [{
+            model: Account,
+            as: 'restaurant'
+          }]
+        }]
       }]
     })
     return orders
@@ -42,7 +49,19 @@ export class OrderDbRepository implements AddOrderRepository, LoadOrdersByUserRe
     return await Order.findOne({
       where: {
         id
-      }
+      },
+      include: [{
+        model: FoodOrder,
+        as: 'foodsOrder',
+        include: [{
+          model: Food,
+          as: 'food',
+          include: [{
+            model: Account,
+            as: 'restaurant'
+          }]
+        }]
+      }]
     })
   }
 }

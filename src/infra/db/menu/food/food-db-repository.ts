@@ -16,7 +16,7 @@ export class FoodDbRepository implements AddFoodRepository, LoadFoodByIdReposito
   }
 
   async loadByRestaurant (restaurantId: number): Promise<FoodModel[]> {
-    const foods = await Food.findAll({ order: [['name', 'ASC']] })
+    const foods = await Food.findAll({ order: [['name', 'ASC']], include: 'restaurant' })
     return foods
   }
 

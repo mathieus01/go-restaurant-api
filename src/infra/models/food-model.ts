@@ -8,7 +8,7 @@ class Food extends Model implements FoodModel {
   description: string
   avatar?: string
   type?: TypeModel
-  account: AccountModel
+  restaurant: AccountModel
   price: number
 }
 
